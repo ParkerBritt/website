@@ -1,9 +1,19 @@
+:root{
+    --background-color: #181a1b;
+}
+
 body {
-    background-color: #0c0c11;
+    background-color: var(--background-color);
     font-family: 'Verdana', sans-serif;
     margin: 0;
     padding: 0;
     color: #ffffff;
+}
+
+header{
+    background-color: var(--background-color);
+    height: 60px;
+    width: 100%;
 }
 
 .home__section{
@@ -82,19 +92,19 @@ body {
 }
 
 /* ---- animation ---- */
-.home__text h1, h3, text, button{
-    opacity: 0%;
-    animation: fadeIn 0.8s ease-in-out 3.5s forwards;
-}
-.home__backgroundvideo__container .overlay{
-    backdrop-filter: blur(0px);
-    animation: blur-in 2s ease-in-out 3.5s forwards;
-}
-.home__title__line {
-    animation: stretchHorizontal 1.5s ease-in-out 3.5s forwards;
-    transform-origin: left;
-    transform: scaleX(0);
-}
+/* .home__text h1, h3, text, button{ */
+/*     opacity: 0%; */
+/*     animation: fadeIn 0.8s ease-in-out 3.5s forwards; */
+/* } */
+/* .home__backgroundvideo__container .overlay{ */
+/*     backdrop-filter: blur(0px); */
+/*     animation: blur-in 2s ease-in-out 3.5s forwards; */
+/* } */
+/* .home__title__line { */
+/*     animation: stretchHorizontal 1.5s ease-in-out 3.5s forwards; */
+/*     transform-origin: left; */
+/*     transform: scaleX(0); */
+/* } */
 
 /* ---- keyframes ---- */
 @keyframes blur-in{
@@ -129,7 +139,7 @@ body {
     border-radius: 60px 60px 0px 0px;
     padding-top: 50px;
     margin-top: -60px;
-    background-color: #2b2b2b;
+    background-color: var(--background-color);
 }
 
 .recent__projects__section h1, text{
