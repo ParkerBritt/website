@@ -14,30 +14,14 @@ body {
 
 .home__text{
     margin: 0vw 5vw;
-}
-
-.home__backgroundvideo__container .overlay{
     position: absolute;
-    top: 0;
-    width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    background-color: rgba(0,0,0,0.1);
-}
-
-.home__backgroundvideo__container video{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    min-height: 100%;
-    object-fit: cover;
-    z-index: -2;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .home__title {
     font-size: 7em;
-    margin-bottom: 0px;
+    margin: 0px;
 }
 
 .home__subtitle{
@@ -62,6 +46,27 @@ body {
 .home__button:hover {
     background-color: #32aaff;
 }
+
+
+.home__backgroundvideo__container .overlay{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.home__backgroundvideo__container video{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
 
 
 .recent__projects__section {
