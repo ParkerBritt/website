@@ -25,6 +25,25 @@ body {
     margin: 0px;
 }
 
+.home__title__line {
+    background-color: #32aaff;
+    width: clamp(100px, 75vw, 700px);
+    height: 5px;
+    border-radius: 5px;
+    animation: stretchHorizontal 1s ease-in-out;
+    transform-origin: left;
+}
+
+@keyframes stretchHorizontal{
+    0% {
+        transform: scale(0, 1);
+        transform: translate(1, 0);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
 .home__subtitle{
     margin-top: 0;
     font-size: clamp(1rem, 6vw, 2.5rem);
@@ -73,6 +92,9 @@ body {
 
 
 .recent__projects__section {
+    border-radius: 60px 60px 0px 0px;
+    padding-top: 50px;
+    margin-top: -60px;
     background-color: #2b2b2b;
 }
 
