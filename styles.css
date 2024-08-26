@@ -4,10 +4,31 @@ body {
     margin: 0;
     padding: 0;
     color: #ffffff;
-    margin: 50px 50px 50px 200px;
+    margin: 0vw 5vw;
 }
 
-h1 {
-    font-size: 3em;
+.home__section{
+
 }
 
+.home__title {
+    font-size: 7em;
+}
+
+.home__subtitle{
+    font-size: 2.5em;
+}
+
+.home__button{
+    font-size: 2em;
+    background-color: #1b1b1b;
+    border: none;
+    color: #ffffff;
+    padding: 2px 14px;
+    border-radius: 30px;
+    transition-duration: 0.4s;
+}
+
+.home__button:hover {
+    background-color: #32aaff;
+}
