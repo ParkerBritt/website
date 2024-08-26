@@ -20,6 +20,8 @@ body {
     text-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
 }
 
+
+
 .home__title {
     font-size: clamp(2rem, 13vw, 7rem);
     margin: 0px;
@@ -30,8 +32,6 @@ body {
     width: clamp(100px, 75vw, 700px);
     height: 5px;
     border-radius: 5px;
-    animation: stretchHorizontal 1s ease-in-out;
-    transform-origin: left;
 }
 
 @keyframes stretchHorizontal{
@@ -60,6 +60,7 @@ body {
     transition-duration: 0.4s;
 }
 
+
 .home__button.showreel{
     margin-right: 20px; 
 }
@@ -76,8 +77,41 @@ body {
     min-height: 100%;
     object-fit: cover;
     z-index: -1;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
     background-color: rgba(0,0,0,0.1);
+}
+
+/* ---- animation ---- */
+.home__text h1, h3, text, button{
+    opacity: 0%;
+    animation: fadeIn 0.8s ease-in-out 3.5s forwards;
+}
+.home__backgroundvideo__container .overlay{
+    backdrop-filter: blur(0px);
+    animation: blur-in 2s ease-in-out 3.5s forwards;
+}
+.home__title__line {
+    animation: stretchHorizontal 1.5s ease-in-out 3.5s forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+/* ---- keyframes ---- */
+@keyframes blur-in{
+    0% {
+        backdrop-filter: blur(0px);
+    }
+    100% {
+        backdrop-filter: blur(5px);
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0%; 
+    }
+    100% {
+        opacity: 100%; 
+    }
 }
 
 .home__backgroundvideo__container video{
