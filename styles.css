@@ -11,9 +11,15 @@ body {
 }
 
 header{
+    display: flex;
+    flex-direction: row;
+
+}
+header p{
     background-color: var(--background-color);
     height: 60px;
     width: 100%;
+    /* margin: 0px 10px; */
 }
 
 .home__section{
