@@ -61,7 +61,7 @@ body {
     font-size: var(--font-body);
 }
 
-.image__portrait__mask{
+.portrait-mask{
     /* width: 100%;  */
     /* height: auto;  */
     /* aspect-ratio: 312 / 329; */
@@ -72,14 +72,24 @@ body {
     background-color: white;
 }
 
-.image__portrait__container{
+.portrait-container{
     display: flex;
     flex-direction:row;
+    align-items: center;
+    gap: 15px;
+}
+
+.icon-bar{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .icon-bar img{
     color: white;
     fill: white;
+    width: 30px;
+    height: 30px;
 }
 
 .technology-list-section h4{
