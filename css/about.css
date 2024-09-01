@@ -67,13 +67,19 @@ body {
     /* aspect-ratio: 312 / 329; */
     width: 400px;
     height: 400px;
-    margin-right: 100px;
     margin-left: 140px;
     border-radius: 100px;
     background-color: white;
 }
 
 .image__portrait__container{
+    display: flex;
+    flex-direction:row;
+}
+
+.icon-bar img{
+    color: white;
+    fill: white;
 }
 
 .technology-list-section h4{
