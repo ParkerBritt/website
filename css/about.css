@@ -86,10 +86,12 @@ body {
 }
 
 .icon-bar img{
-    color: white;
-    fill: white;
     width: 30px;
     height: 30px;
+}
+.icon-bar img:hover{
+    transform: scale(1.1); 
+    filter: invert(40%) sepia(68%) saturate(2107%) hue-rotate(165deg) brightness(100%) contrast(101%);
 }
 
 .technology-list-section h4{
