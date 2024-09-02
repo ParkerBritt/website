@@ -70,6 +70,18 @@ body {
     margin-left: 140px;
     border-radius: 100px;
     background-color: white;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+}
+
+.portrait-mask img{
+    position: relative;
+    top: -110px;
+    object-fit: cover;
+    width: 130%;
+    height: auto;
 }
 
 .portrait-container{
