@@ -6,6 +6,7 @@
     --font-h5: clamp(1rem, .9235rem + .3265vw, 1.25rem);
     --font-h6: clamp(1rem, .9617rem + .1633vw, 1.125rem);
     --font-body: clamp(1rem, .8852rem + .4898vw, 1.375rem);
+    --technology-title-gap: 30px;
 }
 
 h1 {font-size: var(--font-h1)}
@@ -27,26 +28,26 @@ body {
 .section__bio__upper{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 .section__bio__lower{
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .section__bio{
-    margin: 0px 113px;
+    margin: 0px 200px;
     display: flex;
     flex-direction: column;
 }
 
 .div__bio__text{
     height:100%;
-    width: 500px;
+    width: 600px;
 }
 
 .div__bio__text h2{
@@ -55,6 +56,7 @@ body {
 }
 
 .div__bio__text p{
+    margin-top: calc(var(--font-h4) * 1.2 + var(--technology-title-gap));
     text-align: justify;
     height:100%;
     width: auto;
@@ -67,13 +69,14 @@ body {
     /* aspect-ratio: 312 / 329; */
     width: 400px;
     height: 400px;
-    margin-left: 140px;
+    /* margin-left: 140px; */
     border-radius: 100px;
     background-color: white;
     overflow: hidden;
     display: grid;
     place-items: center;
     box-shadow: 3px 3px 8px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
 }
 
 .portrait-mask img{
@@ -82,23 +85,27 @@ body {
     object-fit: cover;
     width: 130%;
     height: auto;
+
+    /* flip */
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
 
 .portrait-container{
     display: flex;
-    flex-direction:row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 15px;
 }
 
 .icon-bar{
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
 }
 
 .icon-bar img{
-    width: 35px;
+    width: 40px;
     height: auto;
 }
 .icon-bar img:hover{
@@ -108,7 +115,8 @@ body {
 
 .technology-list-section h4{
     text-align: center;
-    margin: 5px 0px;
+    margin: 0px;
+    margin-bottom: var(--technology-title-gap);
 }
 
 .technology-list-section{
@@ -118,15 +126,16 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
-    gap: 90px;
+    gap: 120px;
     height: 100%;
 }
 
 .techology-list-column{
     display: flex;
     flex-direction: column;
-    align-content: space-evenly;
+    margin-top: 0px;
+    /* align-content: flex-start; */
+    align-items: flex-start;
     gap: 10px;
 }
 
