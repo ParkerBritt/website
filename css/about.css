@@ -108,11 +108,29 @@ body {
 
 .technology-list-section h4{
     text-align: center;
+    margin: 5px 0px;
 }
+
+.technology-list-section{
+}
+
 .technology-list{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    gap: 80px;
+    gap: 90px;
+    height: 100%;
+}
+
+.techology-list-column{
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+    gap: 10px;
+}
+
+.techology-list-column p{
+    font-style: italic;
+    margin: 0px;
 }
