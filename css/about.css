@@ -98,8 +98,8 @@ body {
 }
 
 .icon-bar img{
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: auto;
 }
 .icon-bar img:hover{
     transform: scale(1.1); 
@@ -131,6 +131,7 @@ body {
 }
 
 .techology-list-column p{
+    font-size: var(--font-h5);
     font-style: italic;
     margin: 0px;
 }
