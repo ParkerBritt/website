@@ -124,19 +124,20 @@ body {
 
 .icon::after {
     content: '';
-    /* background: red; */
-    background-color: #32aaff;
-    width: 140%;
-    height: 140%;
+    background: linear-gradient(to bottom, #4dd1ff, #3158dd);
     position: absolute;
     transition-duration: 0.3s;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 40%);
+    width: 0%;
+    height: 0%;
+    transform: translate(-50%, 30px);
     border-radius: 50%;
 }
 .icon:hover::after{
     transform: translate(-50%, -50%);
+    width: 140%;
+    height: 140%;
 }
 
 .github {
