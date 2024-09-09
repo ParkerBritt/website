@@ -53,14 +53,20 @@ body {
 .div__bio__text h2{
     font-size: 32px;
     font-size: var(--font-h3);
+    margin: 0px 0px;
 }
 
 .div__bio__text p{
-    margin-top: calc(var(--font-h4) * 1.2 + var(--technology-title-gap));
     text-align: justify;
     height:100%;
     width: auto;
     font-size: var(--font-body);
+}
+.section__bio__lower .div__bio__text p{
+    margin-top: calc(var(--font-h4) * 1.2 + var(--technology-title-gap));
+}
+.section__bio__lower .div__bio__text p{
+    margin-top: 4px;
 }
 
 .portrait-mask{
@@ -70,7 +76,7 @@ body {
     width: 400px;
     height: 400px;
     /* margin-left: 140px; */
-    border-radius: 100px;
+    border-radius: 130px;
     background-color: white;
     overflow: hidden;
     display: grid;
@@ -171,7 +177,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    gap: 120px;
+    gap: 150px;
     height: 100%;
 }
 
@@ -185,7 +191,7 @@ body {
 }
 
 .techology-list-column p{
-    font-size: var(--font-h5);
-    font-style: italic;
+    font-size: var(--font-body);
+    /* font-style: italic; */
     margin: 0px;
 }
