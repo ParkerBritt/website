@@ -124,6 +124,7 @@ h2 h4 p {
   /* mask-repeat: no-repeat; */
   mask-position: center;
   position: relative;
+  transition-duration: 0.5s;
 }
 
 .icon::after {
@@ -203,9 +204,8 @@ h2 h4 p {
     left: 50%;
     z-index: -2;
     --scale: 0.7;
-    transform: scale(var(--scale)) translate(calc(-50%/var(--scale)), 90px);
+    transform: scaleX(calc(var(--scale) * -1)) scaleY(var(--scale)) translate(calc(50%/var(--scale)), 90px);
 }
-
 
 .background-blur{
     position: absolute;
