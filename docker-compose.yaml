@@ -2,13 +2,21 @@ version: '3'
 
 services:
   nginx:
-    image: docker.io/nginx:latest
+    image: linuxserver/swag
+    container_name: nginx
+    environment:
+      - PUID=1000            # Your user ID
+      - PGID=1000            # Your group ID
+      - TZ=Europe/London           # Your timezone
+      - URL=wip.parkerbritt.com  # Replace with your domain
+      - SUBDOMAINS=       # Subdomains to cover
+      - VALIDATION=http      # Validation method
+    volumes:
+      - ./pages:/config/www:ro
+      - ./css:/config/www/css:ro
+      - ./assets:/config/www/assets:ro
+      - ./js:/config/www/js:ro
     ports:
       - "8000:80"
-    volumes:
-      - ./pages:/usr/share/nginx/html:ro
-      - ./css:/usr/share/nginx/html/css:ro
-      - ./assets:/usr/share/nginx/html/assets:ro
-      - ./js:/usr/share/nginx/html/js:ro
+      - "4430:443"
     restart: unless-stopped
-
