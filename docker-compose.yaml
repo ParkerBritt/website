@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nginx:
+    image: docker.io/nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./pages:/usr/share/nginx/html:ro
+      - ./css:/usr/share/nginx/html/css:ro
+      - ./assets:/usr/share/nginx/html/assets:ro
+      - ./js:/usr/share/nginx/html/js:ro
+    restart: unless-stopped
+
