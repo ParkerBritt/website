@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: linuxserver/swag
+    image: docker.io/linuxserver/swag
     container_name: nginx
     environment:
       - PUID=1000            # Your user ID
