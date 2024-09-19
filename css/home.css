@@ -40,6 +40,7 @@ body {
 .home__title__line {
     background-color: #32aaff;
     width: clamp(100px, 75vw, 700px);
+    translate: 0px -8px;
     height: 5px;
     border-radius: 5px;
 }
