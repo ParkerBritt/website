@@ -16,6 +16,8 @@ services:
       - ./css:/config/www/css:ro
       - ./assets:/config/www/assets:ro
       - ./js:/config/www/js:ro
+      - ./components:/config/www/components:ro
+      - ./nginx.conf:/config/nginx/nginx.conf:ro
     ports:
       - "8000:80"
       - "4430:443"
