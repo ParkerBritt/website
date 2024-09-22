@@ -18,6 +18,7 @@ services:
       - ./js:/config/www/js:ro
       - ./components:/config/www/components:ro
       - ./nginx.conf:/config/nginx/nginx.conf:ro
+      - ./swag_config:/config
     ports:
       - "8000:80"
       - "4430:443"
