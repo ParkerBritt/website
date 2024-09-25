@@ -23,6 +23,7 @@ function onFilterButtonClicked(id, tag) {
 function filterPortfolioItems(){
     const portfolioItems = document.querySelectorAll("[data-portfolio-item-tag]")
     console.log("len:" + portfolioItems.length);
+    let displayedCounter = 0;
     for (let i=0; i<portfolioItems.length; i++){
         const portfolioItem = portfolioItems[i];
         const itemTags = JSON.parse(portfolioItem.getAttribute('data-portfolio-item-tag'));
@@ -33,11 +34,13 @@ function filterPortfolioItems(){
             (filterCommercial && itemTags.includes('commercial')) ||
             (filterPersonal && itemTags.includes('personal'))
         ){
-            portfolioItem.style.display = 'grid';
-            portfolioItem.classList.add("active");
+            if(!portfolioItem.classList.contains("active")){
+                displayedCounter++;
+                portfolioItem.classList.add("active");
+            }
+            portfolioItem.style.animationDelay = (displayedCounter*0.1)+'s';
             console.log("VALID");
         } else {
-            portfolioItem.style.display = 'none';
             portfolioItem.classList.remove("active");
         }
 
