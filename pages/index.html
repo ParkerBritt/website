@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/header.css">
-    <script src="js/portfolio_filter.js"></script>
 </head>
 <body>
     <!--#include virtual="/components/header.html" -->
@@ -43,14 +42,16 @@
                 </div>
             </section>
             <section class="portfolio-items">
-                <div data-portfolio-item data-portfolio-item-tag='houdini'><p>houdini</p></div>
-                <div data-portfolio-item data-portfolio-item-tag='programming'><p>programming</p></div>
-                <div data-portfolio-item data-portfolio-item-tag='commercial'><p>commercial</p></div>
-                <div data-portfolio-item data-portfolio-item-tag='personal'><p>personal</p></div>
+                <div data-portfolio-item data-portfolio-item-tag='["houdini"]'><p>houdini</p></div>
+                <div data-portfolio-item data-portfolio-item-tag='["houdini", "commercial"]'><p>houdini/commercial</p></div>
+                <div data-portfolio-item data-portfolio-item-tag='["programming"]'><p>programming</p></div>
+                <div data-portfolio-item data-portfolio-item-tag='["commercial"]'><p>commercial</p></div>
+                <div data-portfolio-item data-portfolio-item-tag='["personal"]'><p>personal</p></div>
             </section>
             <!-- <div class="recent__projects__section"> -->
             <!-- </div> -->
         </section>
+        <script src="js/portfolio_filter.js"></script>
     </main>
 </body>
 </html>

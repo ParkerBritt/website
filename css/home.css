@@ -199,10 +199,29 @@ main {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin: 20px;
+    min-height: 800px;
 }
 
 .portfolio-items div {
-    background: red;
+    display: none;
+}
+
+@keyframes portfolioAppear{
+    0% {
+        opacity: 0%;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 100%;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-items div.active {
+    background: var(--main-blue);
+    display: grid;
+    place-items: center;
     aspect-ratio: 3 / 2;
     border-radius: 30px;
+    animation: portfolioAppear 0.5s ease-in-out forwards;
 }
