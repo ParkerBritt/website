@@ -180,4 +180,16 @@ main {
     border: none;
     font-size: 25px;
     font-weight: 200;
+    padding: 3px 10px;
+    margin: 0px;
+    transition: transform 100ms;
+}
+
+.portfolio-section .buttons button:hover{
+    transform: scale(1.05);
+}
+
+.portfolio-section .buttons button.filter-button-clicked {
+    background: var(--main-blue);
+    border-radius: 30px;
 }

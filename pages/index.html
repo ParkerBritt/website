@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/header.css">
+    <script src="js/portfolio_filter.js"></script>
 </head>
 <body>
     <!--#include virtual="/components/header.html" -->
@@ -35,10 +36,10 @@
                 <h1>Portfolio</h1>
                 <div class="underline"></div>
                 <div class="buttons">
-                    <button type="button">Houdini</button>
-                    <button type="button">Programming</button>
-                    <button type="button">Commercial</button>
-                    <button type="button">Personal</button>
+                    <button onclick="onFilterButtonClicked('houdini_button', 'houdini')" id='houdini_button' type="button">Houdini</button>
+                    <button onclick="onFilterButtonClicked('programming_button', 'programming')" id='programming_button' type="button">Programming</button>
+                    <button onclick="onFilterButtonClicked('commercial_button', 'commercial')" id='commercial_button' type="button">Commercial</button>
+                    <button onclick="onFilterButtonClicked('personal_button', 'personal')" id='personal_button' type="button">Personal</button>
                 </div>
             </section>
             <!-- <div class="recent__projects__section"> -->
