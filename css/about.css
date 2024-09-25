@@ -1,21 +1,6 @@
 :root{
-    --font-h1: clamp(3.2rem, .5692rem + 8.238vw, 13.75rem);
-    --font-h2: clamp(1.5rem, 1.0982rem + 1.7143vw, 2.8125rem);
-    --font-h3: clamp(1.375rem, 1.1837rem + .8163vw, 2rem);
-    --font-h4: clamp(1.375rem, 1.1837rem + .8163vw, 1.6rem);
-    --font-h5: clamp(1rem, .9235rem + .3265vw, 1.25rem);
-    --font-h6: clamp(1rem, .9617rem + .1633vw, 1.125rem);
-    --font-body: clamp(1rem, .8852rem + .4898vw, 1.375rem);
     --technology-title-gap: 30px;
 }
-
-h1 {font-size: var(--font-h1)}
-h2 {font-size: var(--font-h2)}
-h3 {font-size: var(--font-h3)}
-h4 {font-size: var(--font-h4)}
-h5 {font-size: var(--font-h5)}
-h6 {font-size: var(--font-h6)}
-
 
 html {
     background: linear-gradient(0deg, #181A1B 40%, #1A1C27);
