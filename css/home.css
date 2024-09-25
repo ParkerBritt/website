@@ -193,3 +193,16 @@ main {
     background: var(--main-blue);
     border-radius: 30px;
 }
+
+.portfolio-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 20px;
+}
+
+.portfolio-items div {
+    background: red;
+    aspect-ratio: 3 / 2;
+    border-radius: 30px;
+}
