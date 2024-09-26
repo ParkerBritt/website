@@ -36,10 +36,13 @@ function filterPortfolioItems(){
                 portfolioItem.classList.add("active");
             }
             portfolioItem.style.animationDelay = (displayedCounter*0.1)+'s';
-            console.log("VALID");
+
+            const projectName = portfolioItem.getAttribute("data-project-name");
+            portfolioItem.style.setProperty("--portfolio-item-name", '\"'+projectName+'\"');
         } else {
             portfolioItem.classList.remove("active");
         }
 
     }
 }
+
