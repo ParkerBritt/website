@@ -173,7 +173,7 @@ main {
 .portfolio-section .buttons {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: clamp(3px, 0.3vw ,20px);
     margin-top: 20px;
 }
 
@@ -181,7 +181,7 @@ main {
     background: transparent;
     color: white;
     border: none;
-    font-size: 25px;
+    font-size: clamp(0.85rem, 3vw ,1.65rem);
     font-weight: 200;
     padding: 3px 10px;
     margin: 0px;
@@ -221,10 +221,33 @@ main {
 
 .portfolio-items div.active {
     background: var(--main-blue);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);
     display: grid;
+    font-size: clamp(0.85rem, 3vw ,1.65rem);
     place-items: center;
     aspect-ratio: 3 / 2;
-    border-radius: 30px;
+    border-radius: clamp(8px, 3vw ,30px);
     opacity: 0;
     animation: portfolioAppear 0.5s ease-in-out forwards;
+}
+.portfolio-items div.active:hover:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2px);
+    z-index: 10;
+}
+.portfolio-items div.active:hover:after {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    background-image: radial-gradient(#5A5A5A1E 58%, #0000001E 100%);
+    font-size: clamp(0.85rem, 3vw ,1.65rem);
+    content: "Project Name";
+    width: 100%;
+    height: 100%;
+    z-index: 11;
 }

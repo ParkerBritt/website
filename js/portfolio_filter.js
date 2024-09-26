@@ -1,6 +1,3 @@
-// const portfolioItems = document.querySelectorAll("[data-portfolio-item-tag]")
-// alert(portfolioItems.length);
-
 let filterHoudini = false;
 let filterCommercial = false;
 let filterProgramming = false;
