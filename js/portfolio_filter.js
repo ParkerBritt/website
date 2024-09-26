@@ -7,6 +7,7 @@
 let filterButtonIds = ["houdini_button", "programming_button", "all_button"];
 
 setFilterButtonState(document.getElementById('all_button'), true);
+filterPortfolioItems('all')
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
