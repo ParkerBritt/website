@@ -142,10 +142,14 @@ main {
 
 
 .portfolio-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--background-color);
     min-height: 1000px;
 }
 
-.portfolio-section .head{
+.portfolio-head{
     display: flex;
     /* justify-content: center; */
     align-items: center;
@@ -154,27 +158,37 @@ main {
     border-radius: 60px 60px 0px 0px;
     padding-top: 50px;
     margin-top: -60px;
+    padding-bottom: 20px;
     background-color: var(--background-color);
 }
 
-.portfolio-section .head .underline {
+.portfolio-head .underline {
     height: 3px;
     border-radius: 2px;
     width: 250px;
     background-color: var(--main-blue);
 }
 
-.portfolio-section h1, text{
+.portfolio-head h1, text{
     font-size: 60px;
     font-weight: 500;
     margin: 0vw 5vw;
 }
 
 .portfolio-section .buttons {
+    position: sticky;
+    top: 1vh;
+    z-index: 10;
+
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    padding: 5px;
+
+    gap: clamp(3px, 0.3vw, 20px);
+
     display: flex;
     flex-direction: row;
-    gap: clamp(3px, 0.3vw, 20px);
-    margin-top: 20px;
 }
 
 .portfolio-section .buttons button {
