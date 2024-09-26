@@ -2,6 +2,7 @@ let filterHoudini = false;
 let filterCommercial = false;
 let filterProgramming = false;
 let filterPersonal = false;
+
 function onFilterButtonClicked(id, tag) {
     const button = document.getElementById(id);
     button.classList.toggle("filter-button-clicked")
@@ -41,6 +42,7 @@ function filterPortfolioItems(){
             const projectName = portfolioItem.getAttribute("data-project-name");
             portfolioItem.style.setProperty("--portfolio-item-name", '\"'+projectName+'\"');
         } else {
+            portfolioItem.style.animationDelay = (0)+'s';
             portfolioItem.classList.remove("active");
         }
 
@@ -57,8 +59,6 @@ document.querySelectorAll('.portfolio-items div').forEach((portfolioItem) => {
         }
         // after appear
         else{
-            // reset animation delay
-            portfolioItem.style.animationDelay = (0)+'s';
         }
     });
 });
