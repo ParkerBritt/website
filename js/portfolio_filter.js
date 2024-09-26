@@ -36,6 +36,7 @@ function filterPortfolioItems(){
                 portfolioItem.classList.add("active");
             }
             portfolioItem.style.animationDelay = (displayedCounter*0.1)+'s';
+            portfolioItem.style.display = "grid";
 
             const projectName = portfolioItem.getAttribute("data-project-name");
             portfolioItem.style.setProperty("--portfolio-item-name", '\"'+projectName+'\"');
@@ -46,3 +47,18 @@ function filterPortfolioItems(){
     }
 }
 
+// get all portfolio items
+document.querySelectorAll('.portfolio-items div').forEach((portfolioItem) => {
+    portfolioItem.addEventListener('animationend', () => {
+        // after dissapear
+        if (!portfolioItem.classList.contains('active')) {
+            // unload portfolio item
+            portfolioItem.style.display = 'none';
+        }
+        // after appear
+        else{
+            // reset animation delay
+            portfolioItem.style.animationDelay = (0)+'s';
+        }
+    });
+});
