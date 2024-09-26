@@ -173,7 +173,7 @@ main {
 .portfolio-section .buttons {
     display: flex;
     flex-direction: row;
-    gap: clamp(3px, 0.3vw ,20px);
+    gap: clamp(3px, 0.3vw, 20px);
     margin-top: 20px;
 }
 
@@ -184,7 +184,7 @@ main {
     font-size: clamp(0.85rem, 3vw ,1.65rem);
     font-weight: 200;
     padding: 3px 10px;
-    margin: 0px;
+    margin: 0px 5px;
     transition: transform 100ms;
 }
 
