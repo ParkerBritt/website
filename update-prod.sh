@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-podman stop nginx
+podman-compose -f ./docker-compose-prod.yaml down
 git pull origin main
 ./start-prod.sh
 

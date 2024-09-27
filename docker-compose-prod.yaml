@@ -23,3 +23,9 @@ services:
       - "8000:80"
       - "4430:443"
     restart: unless-stopped
+  thumbor:
+    container_name: thumbor
+    image: ghcr.io/minimalcompact/thumbor
+    ports:
+      - "8001:80"
+
