@@ -6,8 +6,6 @@
 
 let filterButtonIds = ["houdini_button", "programming_button", "all_button"];
 
-setFilterButtonState(document.getElementById('all_button'), true);
-filterPortfolioItems('all')
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -43,6 +41,7 @@ function toggleFilterButton(button){
 }
 
 function onFilterButtonClicked(id, tag) {
+    console.log("BUTTON CLICKED");
     const button = document.getElementById(id);
     setFilterButtonState(button, true);
     filterPortfolioItems(tag);
@@ -60,7 +59,6 @@ async function filterPortfolioItems(activeTag){
     for (let i=0; i<portfolioItems.length; i++){
         const portfolioItem = portfolioItems[i];
         const itemTags = JSON.parse(portfolioItem.getAttribute('data-portfolio-item-tag'));
-        console.log("portfolio item: " + portfolioItem.innerText + ' ' + JSON.parse(portfolioItem.getAttribute('data-portfolio-item-tag')));
         if(
             activeTag==="all" || itemTags.includes(activeTag)
         ){
@@ -95,3 +93,43 @@ document.querySelectorAll('.portfolio-items div').forEach((portfolioItem) => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", (event) => {
+    fetch('assets/portfolio/portfolio_data.json')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            populatePortfolioItems(data);
+        })
+        .catch(error => console.error('Error:', error));
+
+
+
+
+});
+
+function populatePortfolioItems(jsonData){
+    let portfolioSection = document.querySelector(".portfolio-items"); 
+    for(let i=0; i<jsonData.length; i++){
+        let itemJson = jsonData[i];
+        let itemName = itemJson.name;
+        let itemImagePath = itemJson.image;
+        let itemTags = itemJson.tags;
+        console.log("creating new item: ", itemName);
+
+        // container
+        let itemContainer = document.createElement('div');
+        itemContainer.setAttribute("data-project-name", itemName);
+        itemContainer.setAttribute("data-portfolio-item-tag", JSON.stringify(itemTags));
+        portfolioSection.appendChild(itemContainer);
+
+        // image
+        let itemImage = document.createElement('img');
+        itemImage.setAttribute("src", itemImagePath);
+        itemContainer.appendChild(itemImage);
+    }
+
+    // when content has finished, press all button
+    setFilterButtonState(document.getElementById('all_button'), true);
+    filterPortfolioItems('all')
+}
