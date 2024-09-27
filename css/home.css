@@ -1,5 +1,12 @@
 :root{
     --background-color: #181a1b;
+    --portfolio-columns: 3;
+    --bar: "hello";
+}
+@media only screen and (max-width: 600px) {
+    :root{
+        --portfolio-columns: 2;
+    }
 }
 
 html {
@@ -213,14 +220,10 @@ main {
 
 .portfolio-items {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(var(--portfolio-columns), 1fr);
     gap: clamp(3px, 2vw, 20px);
     margin: clamp(2px, 2vw, 20px);
-}
-@media only screen and (max-width: 600px) {
-    .portfolio-items {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    width: 100%;
 }
 
 
@@ -256,13 +259,16 @@ main {
 }
 
 .portfolio-items div, div.active {
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+
     background: var(--main-blue);
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.5);
-    display: grid;
     font-size: clamp(0.85rem, 3vw ,1.65rem);
-    place-items: center;
-    aspect-ratio: 3 / 2;
     border-radius: clamp(8px, 3vw ,30px);
 }
 

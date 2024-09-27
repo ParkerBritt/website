@@ -109,11 +109,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 function populatePortfolioItems(jsonData){
+    let portfolioColumns = getComputedStyle(document.body).getPropertyValue('--portfolio-columns');
+    console.log("Window Width: " + window.innerWidth);
+    console.log("Column Count: " +portfolioColumns);
+    let portfolioImageWidth = Math.floor(window.innerWidth/portfolioColumns);
+    console.log("portfolioImageWidth: " + portfolioImageWidth);
+
     let portfolioSection = document.querySelector(".portfolio-items"); 
     for(let i=0; i<jsonData.length; i++){
         let itemJson = jsonData[i];
         let itemName = itemJson.name;
-        let itemImagePath = "assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
+        let itemImagePath = "https://wip.parkerbritt.com/thumbor/unsafe/"+portfolioImageWidth+"x0/wip.parkerbritt.com/assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
         let itemTags = itemJson.tags;
         console.log("creating new item: ", itemName);
 
