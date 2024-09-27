@@ -2,66 +2,31 @@
     {
         "name": "hello world",
         "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
+        "tags": ["houdini"]
     },
     {
         "name": "hello world",
         "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
+        "tags": ["houdini"]
     },
     {
         "name": "hello world",
         "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
+        "tags": ["houdini"]
     },
     {
-        "name": "hello world",
+        "name": "new one",
         "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
+        "tags": ["programming"]
     },
     {
-        "name": "hello world",
+        "name": "new one",
         "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
+        "tags": ["programming"]
     },
     {
-        "name": "hello world",
+        "name": "new one",
         "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
-    },
-    {
-        "name": "hello world",
-        "dir": "personal_flower_bloom",
-        "tags": ["houdini", "programming"]
+        "tags": ["programming"]
     }
 ]

@@ -55,7 +55,7 @@ async function filterPortfolioItems(activeTag){
         portfolioItem.style.animationDelay = (0)+'s';
         portfolioItem.classList.remove("active");
     }
-    await sleep(150);
+    await sleep(300);
     for (let i=0; i<portfolioItems.length; i++){
         const portfolioItem = portfolioItems[i];
         const itemTags = JSON.parse(portfolioItem.getAttribute('data-portfolio-item-tag'));
@@ -80,21 +80,27 @@ async function filterPortfolioItems(activeTag){
     }
 }
 
-// get all portfolio items
-document.querySelectorAll('.portfolio-items div').forEach((portfolioItem) => {
-    portfolioItem.addEventListener('animationend', () => {
-        // after dissapear
-        if (!portfolioItem.classList.contains('active')) {
-            // unload portfolio item
-            portfolioItem.style.display = 'none';
-        }
-        // after appear
-        else{
-        }
+function setPortfolioAnimationTriggers(){
+    // get all portfolio items
+    document.querySelectorAll('.portfolio-items div').forEach((portfolioItem) => {
+        portfolioItem.addEventListener('animationend', () => {
+            console.log('animation end');
+            // after dissapear
+            if (!portfolioItem.classList.contains('active')) {
+                // unload portfolio item
+                console.log('setting to none');
+                portfolioItem.style.display = 'none';
+            }
+            // after appear
+            else{
+            }
+        });
     });
-});
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    console.log('content loaded');
+
     fetch('assets/portfolio/portfolio_data.json')
         .then(response => response.json())
         .then(data => {
@@ -134,6 +140,8 @@ function populatePortfolioItems(jsonData){
         itemImage.setAttribute("src", itemImagePath);
         itemContainer.appendChild(itemImage);
     }
+
+    setPortfolioAnimationTriggers();
 
     // when content has finished, press all button
     setFilterButtonState(document.getElementById('all_button'), true);
