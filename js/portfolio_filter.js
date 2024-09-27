@@ -113,7 +113,7 @@ function populatePortfolioItems(jsonData){
     for(let i=0; i<jsonData.length; i++){
         let itemJson = jsonData[i];
         let itemName = itemJson.name;
-        let itemImagePath = itemJson.image;
+        let itemImagePath = "assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
         let itemTags = itemJson.tags;
         console.log("creating new item: ", itemName);
 
