@@ -154,6 +154,7 @@ main {
     flex-direction: column;
     background-color: var(--background-color);
     min-height: 1000px;
+    margin: 0 clamp(2px, 2vw, 20px);
 }
 
 .portfolio-head{
@@ -266,7 +267,11 @@ main {
     height: auto;
     aspect-ratio: 3 / 2;
 
-    background: var(--main-blue);
+    background: red;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
     overflow: hidden;
     font-size: clamp(0.85rem, 3vw ,1.65rem);
     border-radius: clamp(8px, 3vw ,30px);

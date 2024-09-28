@@ -122,10 +122,21 @@ function populatePortfolioItems(jsonData){
     console.log("portfolioImageWidth: " + portfolioImageWidth);
 
     let portfolioSection = document.querySelector(".portfolio-items"); 
+
+    // preload
+    for(let i=0; i<jsonData.length; i++){
+        let preload=new Image();
+        let localImagePath = "filters:format%28avif%29/picsum.photos/seed/"+(i+1)+"/1920/1080";
+        preload.src = "https://wip.parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
+    }
+
     for(let i=0; i<jsonData.length; i++){
         let itemJson = jsonData[i];
         let itemName = itemJson.name;
-        let itemImagePath = "https://wip.parkerbritt.com/thumbor/unsafe/"+portfolioImageWidth+"x0/wip.parkerbritt.com/assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
+        // let localImagePath = "wip.parkerbritt.com/assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
+        let localImagePath = "filters:format%28avif%29/picsum.photos/seed/"+(i+1)+"/1920/1080";
+        let itemImagePath = "https://wip.parkerbritt.com/thumbor/unsafe/"+Math.floor(portfolioImageWidth)+"x0/"+localImagePath;
+        // let itemImagePath = "assets/portfolio/personal_flower_bloom/original.png";
         let itemTags = itemJson.tags;
         console.log("creating new item: ", itemName);
 
@@ -133,12 +144,19 @@ function populatePortfolioItems(jsonData){
         let itemContainer = document.createElement('div');
         itemContainer.setAttribute("data-project-name", itemName);
         itemContainer.setAttribute("data-portfolio-item-tag", JSON.stringify(itemTags));
-        portfolioSection.appendChild(itemContainer);
+
+        // preload
+        let preloadURL = "https://wip.parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
+        itemContainer.style.background = 'url('+preloadURL+') center / cover no-repeat';
+
 
         // image
         let itemImage = document.createElement('img');
         itemImage.setAttribute("src", itemImagePath);
+        itemImage.setAttribute("loading", "lazy");
         itemContainer.appendChild(itemImage);
+
+        portfolioSection.appendChild(itemContainer);
     }
 
     setPortfolioAnimationTriggers();
