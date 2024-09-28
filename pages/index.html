@@ -21,13 +21,13 @@
             </div>
             <div class="home__backgroundvideo__container">
                 <div class="overlay"></div>
-                <!-- <video autoplay loop muted disablepictureinpicture> -->
-                <!--     <source src="assets/video/home_background_001_4k.webm" type="video/webm" media="(min-width:3840px)"> -->
-                <!--     <source src="assets/video/home_background_001_1080p.webm" type="video/webm" media="(min-width:1080px)"> -->
-                <!--     <source src="assets/video/home_background_001_720p.webm" type="video/webm" media="(min-width:720px)"> -->
-                <!--     <source src="assets/video/home_background_001_480p.webm" type="video/webm"> -->
-                <!--     Your browser does not support the video tag. -->
-                <!-- </video> -->
+                <video autoplay loop muted disablepictureinpicture>
+                    <source src="assets/video/home_background_001_4k.webm" type="video/webm" media="(min-width:3840px)">
+                    <source src="assets/video/home_background_001_1080p.webm" type="video/webm" media="(min-width:1440px)">
+                    <source src="assets/video/home_background_001_720p.webm" type="video/webm" media="(min-width:1080px)">
+                    <source src="assets/video/home_background_001_480p.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </section>
         <section class="portfolio-head">
@@ -38,7 +38,7 @@
             <div class="buttons">
                 <button onclick="onFilterButtonClicked('houdini_button', 'houdini')" id='houdini_button' type="button">Houdini</button>
                 <button onclick="onFilterButtonClicked('programming_button', 'programming')" id='programming_button' type="button">Programming</button>
-                <button onclick="onFilterButtonClicked('all_button', 'all')" id='all_button' type="button">All</button>
+                <button class="active" onclick="onFilterButtonClicked('all_button', 'all')" id='all_button' type="button">All</button>
             </div>
             <section class="portfolio-items">
             </section>
