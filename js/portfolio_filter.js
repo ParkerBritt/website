@@ -1,11 +1,4 @@
-// let filterHoudini = false;
-// let filterCommercial = false;
-// let filterProgramming = false;
-// let filterPersonal = false;
-// let filterAll = false;
-
 let filterButtonIds = ["houdini_button", "programming_button", "all_button"];
-
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
