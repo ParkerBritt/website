@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 });
 
-function populatePortfolioItems(jsonData){
+function populatePortfolioItems(jsonData, start=0, end=jsonData.length){
     let portfolioColumns = getComputedStyle(document.body).getPropertyValue('--portfolio-columns');
     console.log("Window Width: " + window.innerWidth);
     console.log("Column Count: " +portfolioColumns);
@@ -116,14 +116,16 @@ function populatePortfolioItems(jsonData){
 
     let portfolioSection = document.querySelector(".portfolio-items"); 
 
+    let effectiveEnd = Math.min(end, jsonData.length);
+
     // preload
-    for(let i=0; i<jsonData.length; i++){
+    for(let i=start; i<effectiveEnd; i++){
         let preload=new Image();
         let localImagePath = "filters:format%28avif%29/picsum.photos/seed/"+(i+1)+"/1920/1080";
         preload.src = "https://wip.parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
     }
 
-    for(let i=0; i<jsonData.length; i++){
+    for(let i=start; i<effectiveEnd; i++){
         let itemJson = jsonData[i];
         let itemName = itemJson.name;
         // let localImagePath = "wip.parkerbritt.com/assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
