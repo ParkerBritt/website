@@ -10,4 +10,8 @@ I plan on using this to experiment over time with different web development tech
 
 My website can be accessed <a href="https://wip.parkerbritt.com" target="_blank">here.</a>
 
+# Technology 
+- Nginx
+- JavaScript/CSS/HTML
+
 <a href="https://wip.parkerbritt.com" target="_blank"><img src=https://github.com/user-attachments/assets/7cecf02e-53c7-4fc7-a005-35556940c1dd></a>
