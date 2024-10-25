@@ -9,10 +9,10 @@ This repo is a hobby project to explore the technology behind building and hosti
 I plan on using this to experiment over time with different web development techniques and technologies, the end goal being to replace my current professional website. 
 <blockquote>Currently a WIP and will probably be for some time.</blockquote>
 
-My website can be accessed <a href="https://wip.parkerbritt.com" target="_blank">here.</a>
+<div align="center">
+Access at<br>
+<a href="https://wip.parkerbritt.com" target="_blank">wip.parkerbritt.com.</a>
+</div>
 
-# Technology 
-- Nginx
-- JavaScript/CSS/HTML
-
-<a href="https://wip.parkerbritt.com" target="_blank"><img src=https://github.com/user-attachments/assets/7cecf02e-53c7-4fc7-a005-35556940c1dd></a>
+#  
+<a href="https://wip.parkerbritt.com" target="_blank"><img src=assets/screenshots/home_page.png></a>
