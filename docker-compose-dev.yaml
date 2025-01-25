@@ -3,8 +3,9 @@ version: '3'
 services:
   nginx:
     image: docker.io/nginx:latest
+    container_name: website
     ports:
-      - "8000:80"
+      - "8001:80"
     volumes:
       - ./pages:/usr/share/nginx/html:ro
       - ./css:/usr/share/nginx/html/css:ro
@@ -13,5 +14,12 @@ services:
       - ./nginx_dev.conf:/etc/nginx/nginx.conf:ro
       - ./components:/usr/share/nginx/html/components:ro
     restart: unless-stopped
+  thumbor:
+    container_name: thumbor
+    image: ghcr.io/minimalcompact/thumbor
+    ports:
+      - "8003:80"
+    volumes:
+      - ./thumbor.conf:/app/thumbor.conf
 
 
