@@ -6,13 +6,13 @@
   <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white">
 </div>
 This repo is a hobby project to explore the technology behind building and hosting web servers.
-I plan on using this to experiment over time with different web development techniques and technologies, the end goal being to replace my <a href="https://www.parkerbritt.com" target="_blank">current professional website.</a> 
+I plan on using this to experiment over time with different web development techniques and technologies, the end goal being to replace my current professional website. 
 <blockquote>Currently a WIP and will probably be for some time.</blockquote>
 
 <div align="center">
 Access at<br>
-<h3><a href="https://wip.parkerbritt.com" target="_blank">wip.ParkerBritt.com.</a></h3>
+<h3><a href="https://parkerbritt.com" target="_blank">parkerbritt.com</a></h3>
 </div>
 
 #  
-<a href="https://wip.parkerbritt.com" target="_blank"><img src=assets/screenshots/home_page.png></a>
+<a href="https://parkerbritt.com" target="_blank"><img src=assets/screenshots/home_page.png></a>
