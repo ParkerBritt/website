@@ -11,11 +11,11 @@ client = AsyncIOMotorClient(MONGO_URL)
 db = client.website  # database name
 demo_collection = db.projects  # collection name
 
-@app.get("/")
+@app.get("/website_api/")
 async def read_root():
     return {"Hello": "World"}
 
-@app.get("/projects/")
+@app.get("/website_api/projects/")
 async def get_items():
     items = await demo_collection.find().to_list(10)
     for item in items:

@@ -24,7 +24,7 @@ services:
 
   # Database
   website_mongo:
-    image: mongo
+    image: docker.io/mongo
     restart: always
     ports:
       - "27017:27017"

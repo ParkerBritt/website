@@ -94,7 +94,7 @@ function setPortfolioAnimationTriggers(){
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log('content loaded');
 
-    fetch('http://parkerbritt.com:8004/website_api/projects')
+    fetch('http://parkerbritt.com/website_api/projects')
         .then(response => response.json())
         .then(data => {
             console.log(data);
