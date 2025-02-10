@@ -15,7 +15,7 @@ demo_collection = db.projects  # collection name
 async def read_root():
     return {"Hello": "World"}
 
-@app.get("/website_api/projects/")
+@app.get("/projects/")
 async def get_items():
     items = await demo_collection.find().to_list(10)
     for item in items:
