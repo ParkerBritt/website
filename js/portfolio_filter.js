@@ -94,7 +94,7 @@ function setPortfolioAnimationTriggers(){
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log('content loaded');
 
-    fetch('assets/portfolio/portfolio_data.json')
+    fetch('http://parkerbritt.com:8004/website_api/projects')
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -122,7 +122,7 @@ function populatePortfolioItems(jsonData, start=0, end=jsonData.length){
     for(let i=start; i<effectiveEnd; i++){
         let preload=new Image();
         let localImagePath = "filters:format%28avif%29/picsum.photos/seed/"+(i+1)+"/1920/1080";
-        preload.src = "https://wip.parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
+        preload.src = "https://parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
     }
 
     for(let i=start; i<effectiveEnd; i++){
@@ -130,7 +130,7 @@ function populatePortfolioItems(jsonData, start=0, end=jsonData.length){
         let itemName = itemJson.name;
         // let localImagePath = "wip.parkerbritt.com/assets/portfolio/"+itemJson.dir+"/thumbnail.avif";
         let localImagePath = "filters:format%28avif%29/picsum.photos/seed/"+(i+1)+"/1920/1080";
-        let itemImagePath = "https://wip.parkerbritt.com/thumbor/unsafe/"+Math.floor(portfolioImageWidth)+"x0/"+localImagePath;
+        let itemImagePath = "https://parkerbritt.com/thumbor/unsafe/"+Math.floor(portfolioImageWidth)+"x0/"+localImagePath;
         // let itemImagePath = "assets/portfolio/personal_flower_bloom/original.png";
         let itemTags = itemJson.tags;
         console.log("creating new item: ", itemName);
@@ -141,7 +141,7 @@ function populatePortfolioItems(jsonData, start=0, end=jsonData.length){
         itemContainer.setAttribute("data-portfolio-item-tag", JSON.stringify(itemTags));
 
         // preload
-        let preloadURL = "https://wip.parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
+        let preloadURL = "https://parkerbritt.com/thumbor/unsafe/20x0/"+localImagePath;
         itemContainer.style.background = 'url('+preloadURL+') center / cover no-repeat';
 
 

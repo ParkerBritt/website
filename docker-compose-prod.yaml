@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  nginx:
+  website_nginx:
     image: docker.io/nginx:latest
     container_name: website
     ports:
@@ -14,12 +14,30 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./components:/usr/share/nginx/html/components:ro
     restart: unless-stopped
-  thumbor:
+  website_thumbor:
     container_name: thumbor
     image: ghcr.io/minimalcompact/thumbor
     ports:
       - "8003:80"
     volumes:
       - ./thumbor.conf:/app/thumbor.conf
+
+  # Database
+  website_mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    env_file: "./database/mongo.env"
+    volumes:
+      - ./database/mongo_data:/data/db
+
+  website_middleman:
+    build: ./backend
+    ports:
+      - "8004:80"
+    volumes:
+      - ./backend/main.py:/app/main.py
+      - ./backend/requirements.txt:/app/requirements.txt
 
 

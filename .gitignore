@@ -1,1 +1,3 @@
 swag_config
+*.env
+database/mongo_data
