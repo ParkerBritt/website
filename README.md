@@ -14,5 +14,4 @@ Access at<br>
 <h3><a href="https://parkerbritt.com" target="_blank">parkerbritt.com</a></h3>
 </div>
 
-#  
 <a href="https://parkerbritt.com" target="_blank"><img src=assets/screenshots/home_page.png></a>
