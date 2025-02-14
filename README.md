@@ -9,13 +9,15 @@ This repo is a hobby project to explore the technology behind building and hosti
 I plan on using this to experiment over time with different web development techniques and technologies, the end goal being to replace my old professional website. 
 <blockquote>Currently a WIP and will probably be for some time.</blockquote>
 
-Stack
-- nginx
+
+Stack:
 - javascript
 - css
 - html
-- thumbor
-- fast api
+- nginx - web server and reverse proxy
+- thumbor - content management system
+- fast api - backend api
+- mongodb - backend database
 
 <div align="center">
 Access at<br>
