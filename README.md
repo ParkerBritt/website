@@ -7,20 +7,23 @@
 </div>
 This repo is a hobby project to explore the technology behind building and hosting web servers.
 I plan on using this to experiment over time with different web development techniques and technologies, the end goal being to replace my old professional website. 
+This project is built without a frontend framework, using only HTML, CSS, and JavaScript for the client-side.
 <blockquote>Currently a WIP and will probably be for some time.</blockquote>
 
-
-Stack:
-- javascript
-- css
-- html
-- nginx - web server and reverse proxy
-- thumbor - content management system
-- fast api - backend api
-- mongodb - backend database
-
 <div align="center">
-Access at<br>
+<h2>💻 Tech Stack</h2>
+
+| Technology  | Description |
+|-------------|------------|
+| NGINX       | Web server and reverse proxy for hosting |
+| Thumbor     | Content management system (CMS) for images |
+| FastAPI     | High-performance backend API framework |
+| MongoDB     | NoSQL database for backend data storage |
+</div>
+
+<h1></h1>
+<div align="center">
+Access at
 <h3><a href="https://parkerbritt.com" target="_blank">parkerbritt.com</a></h3>
 </div>
 
