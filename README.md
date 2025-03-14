@@ -23,8 +23,7 @@ This project is built without a frontend framework, using only HTML, CSS, and Ja
 
 <h1></h1>
 <div align="center">
-Access at
-<h3><a href="https://parkerbritt.com" target="_blank">parkerbritt.com</a></h3>
-</div>
-
+Access at:<br>
+<a href="https://parkerbritt.com"><img src="https://parkerbritt.com/badge?label=parkerbritt.com&color=1572B6"></a>
+<br><br>
 <a href="https://parkerbritt.com" target="_blank"><img src=assets/screenshots/home_page.png></a>
