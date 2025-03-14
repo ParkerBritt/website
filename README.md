@@ -1,9 +1,9 @@
 <h1 align="center">Website</h1>
 <div align="center">
-  <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-  <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img src="https://img.shields.io/badge/NGINX-009639?style=for-the-badge&logo=nginx&logoColor=white">
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://parkerbritt.com/badge?label=HTML&icon=html5&color=E34F26"></a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://parkerbritt.com/badge?label=CSS&icon=css3&color=1572B6"></a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://parkerbritt.com/badge?label=JavaScript&icon=javascript&color=F7DF1E"></a>
+<a href="https://www.nginx.com/"><img src="https://parkerbritt.com/badge?label=NGINX&icon=nginx&color=009639"></a>
 </div>
 This repo is a hobby project to explore the technology behind building and hosting web servers.
 I plan on using this to experiment over time with different web development techniques and technologies, the end goal being to replace my old professional website. 
