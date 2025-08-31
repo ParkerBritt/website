@@ -2,10 +2,13 @@
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
 import Searchbar from '../components/Searchbar.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 
 import Layout from '../layouts/Layout.astro';
+import '../styles/global.css'
+
 const allProjects = await Astro.glob('../projects/*.{md,mdx}');
-const projects = allProjects.filter((project) => !project.frontmatter.draft && project.frontmatter.slug);
+const projects = allProjects.filter((project) => !project.frontmatter.draft && (project.frontmatter.slug || project.frontmatter.link));
 ---
 
 <div id="container">
@@ -20,16 +23,7 @@ const projects = allProjects.filter((project) => !project.frontmatter.draft && p
 
     <section id="projects-grid">
         {projects.map((project) => (
-            <a href={`/projects/${project.frontmatter.slug}`}>
-                <div class="project-card">
-                    <h3>{project.frontmatter.title}</h3>
-                    <h3>{project.frontmatter.year}</h3>
-                    {project.frontmatter.image && (
-                        <img src={project.frontmatter.image} alt={project.frontmatter.title} />
-                    )}
-                    <p>{project.frontmatter.description}</p>
-                </div>
-            </a>
+        <ProjectCard project={project}/>
         ))}
     </section>
 </div>
@@ -42,42 +36,6 @@ const projects = allProjects.filter((project) => !project.frontmatter.draft && p
       justify-items: center;
       gap: 1.5rem;
       margin-top: 2rem;
-    }
-
-    #projects-grid a
-    {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .project-card {
-        margin: 2rem auto 0;
-        background: white;
-        border-radius: 0.75rem;
-        padding: 1rem;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        transition: transform 0.15s ease;
-        width: 500px;
-        height: 150px;
-    }
-
-    .project-card:hover {
-        transform: translateY(-4px);
-    }
-
-    .project-card img {
-        width: 100%;
-        border-radius: 0.5rem;
-        margin-bottom: 0.75rem;
-    }
-
-    .project-card h3 {
-        margin: 0.25rem 0;
-    }
-
-    .project-card p {
-        font-size: 0.9rem;
-        color: #555;
     }
 
 	#background {
@@ -124,13 +82,6 @@ const projects = allProjects.filter((project) => !project.frontmatter.draft && p
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
 	}
 
 	p {

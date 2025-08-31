@@ -5,16 +5,73 @@ year: 2022
 description: Pipeline tool for, Rebirth, university short film.
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum pulvinar etiam non quam. Neque volutpat ac tincidunt vitae semper quis lectus nulla at. At tellus at urna condimentum mattis. Odio morbi quis commodo odio aenean sed adipiscing diam. Mauris pellentesque pulvinar pellentesque habitant. Non blandit massa enim nec dui nunc mattis enim ut. Et egestas quis ipsum suspendisse ultrices. Tincidunt lobortis feugiat vivamus at. Morbi tempus iaculis urna id. Integer malesuada nunc vel risus.
+<p align="center">
+<a href="https://github.com/parkerbritt/cog">
+    <img height="150em" src="https://raw.githubusercontent.com/ParkerBritt/cog/refs/heads/main/cog_vfx/assets/icons/main_icon.png"/>
+</a>
+</p>
 
-Cursus risus at ultrices mi tempus imperdiet. Aliquam id diam maecenas ultricies mi eget mauris pharetra et. Magnis dis parturient montes nascetur ridiculus mus mauris. Sapien eget mi proin sed libero enim sed faucibus. Sed faucibus turpis in eu mi. Eget mi proin sed libero. In hendrerit gravida rutrum quisque non tellus orci. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit lectus. In arcu cursus euismod quis viverra nibh. Enim diam vulputate ut pharetra sit amet aliquam id diam. Nibh praesent tristique magna sit amet purus gravida quis blandit. Pulvinar etiam non quam lacus.
+<h1 align="center">Cog Pipeline</h1>
+<p align="center"}>
+  <img src="https://img.shields.io/badge/Qt-41CD52?style=for-the-badge&logo=qt&logoColor=white">
+  <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue">
+  <img src="https://img.shields.io/badge/PIP-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B">
+  <img src="https://img.shields.io/badge/Houdini-FF4713?style=for-the-badge&logo=houdini&logoColor=white">
+  <img src="https://img.shields.io/badge/Perforce-20a9dc?style=for-the-badge&logo=perforce&logoColor=404040">
+</p>
 
-Arcu dui vivamus arcu felis bibendum. Mi eget mauris pharetra et ultrices. Ultrices mi tempus imperdiet nulla malesuada. Dui accumsan sit amet nulla facilisi morbi tempus iaculis urna. Sit amet mattis vulputate enim. Pulvinar elementum integer enim neque volutpat. Aliquam nulla facilisi cras fermentum odio. Eget lorem dolor sed viverra ipsum nunc. Tellus cras adipiscing enim eu turpis egestas. Tortor at auctor urna nunc id cursus metus. Id interdum velit laoreet id donec. Pretium viverra suspendisse potenti nullam ac tortor vitae. Ullamcorper a lacus vestibulum sed arcu non.
+Cog is a **pipeline interface for VFX** and animation specifically designed for the needs of the team of the **[Rebirth](https://www.therookies.co/entries/28123)** student film.  
+Because Cog is tailoured to our team's specific needs and built around other tools, it will not fit all use cases or environments.
 
-Tortor consequat id porta nibh venenatis cras sed. Amet est placerat in egestas erat imperdiet. Enim lobortis scelerisque fermentum dui. Ut etiam sit amet nisl purus in. Libero id faucibus nisl tincidunt eget nullam. Arcu dictum varius duis at consectetur. At volutpat diam ut venenatis tellus. Netus et malesuada fames ac turpis. Pulvinar pellentesque habitant morbi tristique senectus. Sagittis eu volutpat odio facilisis mauris sit amet massa. Donec massa sapien faucibus et molestie ac feugiat.
+<!-- ![image](screenshots/main_interface.jpg) -->
+> **Warning**  
+> Cog is in a very early stage of development. It likely will never be in a state to be used publicly.
 
-Neque volutpat ac tincidunt vitae semper quis lectus nulla at. Id cursus metus aliquam eleifend mi in nulla posuere. Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. Netus et malesuada fames ac turpis egestas. Tristique senectus et netus et malesuada fames ac. Ac turpis egestas integer eget. Urna nunc id cursus metus aliquam eleifend mi. Varius duis at consectetur lorem donec massa. Tristique nulla aliquet enim tortor at auctor urna. Arcu cursus euismod quis viverra nibh cras pulvinar mattis nunc. Nulla at volutpat diam ut venenatis tellus in metus vulputate. Eu lobortis elementum nibh tellus molestie nunc non blandit. Enim neque volutpat ac tincidunt vitae semper quis lectus nulla. Metus dictum at tempor commodo ullamcorper a. Amet purus gravida quis blandit. Dui ut ornare lectus sit amet est placerat. Pellentesque massa placerat duis ultricies lacus sed turpis. Nisl tincidunt eget nullam non nisi est sit amet.
+## Features
+- **Cross platform**
+  - Cog was built to work across **Windows and Linux**. Mac is not supported.
+  - Packaged with PIP
+  - Interface built with Qt for Python
+- **Rendering**  
+  - Local rendering using headless Houdini instances
+  - Select individual layers to render  
+<!-- ![image](screenshots/render_demo.gif) -->
+- **Project Environment Variables**
+  - Environment envariables are set when opening project files (Houdini, Maya, Nuke, etc.)
+  - Frame range, shot number, fps, description, etc.
+- **Search**
+  - Users are able to search for specific assets or shots
+- **Shot Management**
+  - Shots can be created, edited, or deleted through the interface
+- **Auto Update**
+  - Cog will automatically check for new package versions on your perforce repository and install the latest version
+- **Environment Setup**
+  - On the first launch Cog will setup the user's envrionment to enable the rest of the pipeline:
+    - creating config files, installing houdini packages, setting environment variables, installing python modules for the houdini python interpreter, etc.
 
-Eu non diam phasellus vestibulum. Facilisi nullam vehicula ipsum a arcu cursus vitae congue. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. Dolor sed viverra ipsum nunc aliquet. Porta nibh venenatis cras sed felis eget velit. Aliquam sem et tortor consequat id porta nibh. Pellentesque habitant morbi tristique senectus et. Cursus metus aliquam eleifend mi. At tellus at urna condimentum mattis pellentesque id nibh. Auctor eu augue ut lectus arcu bibendum at. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Cras tincidunt lobortis feugiat vivamus at. Mi bibendum neque egestas congue quisque egestas.
+## Installation
+### Requirements
+- Perforce P4
+- Sidefx Houdini
 
-Et malesuada fames ac turpis. Ut lectus arcu bibendum at varius vel pharetra vel. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Aliquam purus sit amet luctus venenatis lectus magna fringilla urna. Velit aliquet sagittis id consectetur. Eget aliquet nibh praesent tristique magna. Quam lacus suspendisse faucibus interdum. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar proin. Vitae suscipit tellus mauris a. Sagittis purus sit amet volutpat consequat. Varius morbi enim nunc faucibus a pellentesque sit amet. Odio facilisis mauris sit amet massa.
+First **clone** and **cd** into the repository  
+```bash
+git clone https://github.com/parkerbritt/cog
+cd cog
+```
+### (Option 1) Interactive installation
+Run the **install** command
+```bash
+pip install -e .
+```
+### (Option 2) Regular installation
+**Build and install** the tar.gz package
+```bash
+python setup.py sdist
+pip install dist/cog_vfx-0.1.tar.gz
+```
+### Launch Cog
+**Run** the cog **command*** in the terminal
+```bash
+cog
+```

@@ -1,30 +1,60 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
-import '../styles/global.css'
+const { project } = Astro.props;
+const hrefLink = project.frontmatter.slug
+  ? `/projects/${project.frontmatter.slug}`
+  : project.frontmatter.link;
+console.log(hrefLink)
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<h1>
-				Parker Britt
-			</h1>
-			<h2>
-				Houdini TD | Software Developer
-			</h2>
-		</section>
-	</main>
-</div>
+<a href={hrefLink}>
+    <div class="project-card">
+        <h3>{project.frontmatter.title}</h3>
+        <h3>{project.frontmatter.year}</h3>
+        {project.frontmatter.image && (
+            <img src={project.frontmatter.image} alt={project.frontmatter.title} />
+        )}
+        <p>{project.frontmatter.description}</p>
+    </div>
+</a>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+    .project-card {
+        margin: 2rem auto 0;
+        background: #15181a;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        transition: transform 0.15s ease;
+        width: 500px;
+        height: 150px;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .project-card img {
+        width: 100%;
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .project-card h3 {
+        margin: 0.25rem 0;
+    }
+
+    .project-card p {
+        font-size: 0.9rem;
+    }
+
+    .project-card p, h1, h2, h3{
+        color: white;
+    }
 
 	#background {
 		position: fixed;
@@ -45,7 +75,6 @@ import '../styles/global.css'
 		height: 100%;
 		display: flex;
 		justify-content: center;
-        background: #15181a;
 	}
 
 	#hero {
@@ -53,7 +82,7 @@ import '../styles/global.css'
 		align-items: start;
 		flex-direction: column;
 		justify-content: center;
-		padding: 16px;
+		padding: 30px;
 	}
 
 	h1 {
@@ -73,6 +102,12 @@ import '../styles/global.css'
 		margin: 0;
 	}
 
+	h2 {
+		margin: 0 0 1em;
+		font-weight: normal;
+		color: #111827;
+		font-size: 20px;
+	}
 
 	p {
 		color: #4b5563;
@@ -99,54 +134,4 @@ import '../styles/global.css'
 		border: 1px solid white;
 	}
 
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
-	}
 </style>

@@ -1,0 +1,16 @@
+html, body
+{
+    background: #15181a;
+;
+}
+
+p, h1, h2, h3, h4
+{
+    color: white;
+}
+
+h2 {
+    margin: 0 0 1em;
+    font-weight: normal;
+    font-size: 20px;
+}
