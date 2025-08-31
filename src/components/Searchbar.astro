@@ -1,0 +1,7 @@
+---
+import Search from './Search.jsx';
+const allPosts = await Astro.glob('../projects/*.{md,mdx}');
+const posts = allPosts.filter((post) => !post.frontmatter.draft && post.frontmatter.slug);
+---
+
+<Search client:load searchList={posts} />
