@@ -30,13 +30,34 @@ const projects = allProjects.filter((project) => !project.frontmatter.draft && (
 
 <style>
     #projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, 530px);
-      justify-content: center;
-      justify-items: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 16px;
+
+        /* display: grid; */
+        /* grid-template-columns: repeat(3, 1fr); */
+        /* justify-content: center; */
+        /* justify-items: center; */
+        /* gap: 1.5rem; */
+        /* margin-top: 2rem; */
     }
+
+    @media (min-width: 570px) {
+        #projects-grid {
+            grid-template-columns: repeat(3, 1fr);
+            /* background: green; */
+        }
+    }
+
+    @media (min-width: 1000px) {
+        #projects-grid {
+            grid-template-columns: repeat(4, 1fr);
+            /* background: red; */
+        }
+    }
+
+
 
 	#background {
 		position: fixed;
