@@ -1,7 +1,7 @@
 ---
 title: Cog Pipeline
 slug: cog-pipeline
-year: 2022
+date: 2024-05-02
 description: Pipeline tool for, Rebirth, university short film.
 ---
 

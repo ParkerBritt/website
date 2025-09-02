@@ -9,7 +9,7 @@ console.log(hrefLink)
 <a href={hrefLink}>
     <div class="project-card">
         <h3>{project.frontmatter.title}</h3>
-        <h3>{project.frontmatter.year}</h3>
+        <h3>{new Date(project.frontmatter.date).getFullYear()}</h3>
         {project.frontmatter.image && (
             <img src={project.frontmatter.image} alt={project.frontmatter.title} />
         )}

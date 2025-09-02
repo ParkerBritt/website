@@ -1,7 +1,7 @@
 ---
 title: Houdini Attribute Connectivity
 link: https://github.com/ParkerBritt/houdini-attribute-connectivity
-year: 2025
+date: "2025"
 description: Houdini library for the Attribute Connectivity SOP.
 ---
 

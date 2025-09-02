@@ -7,7 +7,13 @@ import ProjectCard from '../components/ProjectCard.astro';
 import Layout from '../layouts/Layout.astro';
 
 const allProjects = await Astro.glob('../projects/*.{md,mdx}');
-const projects = allProjects.filter((project) => !project.frontmatter.draft && (project.frontmatter.slug || project.frontmatter.link));
+const projects = allProjects
+    .filter((project) => !project.frontmatter.draft && (project.frontmatter.slug || project.frontmatter.link))
+    .sort(function(a, b) {
+        var c = new Date(a.frontmatter.date);
+        var d = new Date(b.frontmatter.date);
+        return d-c;
+    });
 ---
 
 <div id="container">
