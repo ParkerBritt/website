@@ -1,0 +1,29 @@
+---
+const { src } = Astro.props;
+const { href } = Astro.props;
+const iconSize = 40;
+---
+
+<a href = {href}>
+    <img class="SocialButton" src={src} alt="" width={iconSize}/>
+</a>
+
+
+<style>
+    .SocialButton
+    {
+        transition-duration: 100ms;
+        transition-timing-function: ease-in-out();
+    }
+    .SocialButton:hover
+    {
+        transform: translateY(-4px);
+        transition-duration: 400ms;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+</style>
