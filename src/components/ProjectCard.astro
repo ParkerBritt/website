@@ -154,6 +154,27 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
         color: white;
     }
 
+    @media (hover: none) and (pointer: coarse) {
+        .image-titles
+        {
+            opacity: 1;
+            transform: scale(1);
+
+            align-items: flex-end;
+            justify-content: left;
+            text-align: center;
+
+            margin: 20px;
+        }
+
+        .project-card:hover .card-image-overlay
+        {
+            opacity: 0;
+        }
+
+    }
+
+
     .project-card h1
     {
         font-size: 1.8rem;
