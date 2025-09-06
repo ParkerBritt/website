@@ -48,15 +48,17 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
 
     .image-titles
     {
+
         position: absolute;
 
-        top: 0;
-        left: 0;
+        top: 0px;
+        left: 0px;
 
         display: flex;
 
         align-items: center;
         justify-content: center;
+        text-align: center;
 
         width: 100%;
         height: 100%;
@@ -150,6 +152,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
 
     .project-card p, h1, h2, h3{
         color: white;
+    }
+
+    .project-card h1
+    {
+        font-size: 1.8rem;
     }
 
 </style>
