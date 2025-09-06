@@ -2,12 +2,14 @@
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
 import Socials from './Socials.astro';
+import backgroundVideo from '../assets/video/home_background_001_480p.webm'
 ---
 
 <div id="container">
 	<img id="background" src={background.src} alt="" fetchpriority="high" />
 	<main>
 		<section id="hero">
+
             <div id="titles">
                 <h1>
                     Parker Britt
@@ -19,11 +21,47 @@ import Socials from './Socials.astro';
             <div id="socials">
                 <Socials/>
             </div>
+
+            <div id="video-overlay"/>
+            <video autoplay loop muted disablepictureinpicture id="background-video">
+                <source src={backgroundVideo} type="video/webm">
+                Your browser does not support the video tag.
+            </video>
 		</section>
 	</main>
 </div>
 
+<style>
+	h1 {
+		font-size: 100px;
+        margin: 0px;
+	}
+	h2 {
+		font-size: 25px;
+	}
+
+
+</style>
+
 <style is:inline>
+    body
+    {
+        background: transparent;
+    }
+
+    #video-overlay
+    {
+        position: absolute;
+
+        top: 0;
+        width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+
+        z-index: -1;
+        backdrop-filter: blur(10px);
+        background-color: rgba(0,0,0,0.1);
+    }
 
     #hero {
         display: flex;
@@ -32,6 +70,20 @@ import Socials from './Socials.astro';
         align-items: center;
         height: 100%;
         width: 100%;
+        background: transparent;
+
+        overflow: hidden;
+        position: relative;
+    }
+
+    #background-video
+    {
+        position: absolute;
+        /* top: 0; */
+        width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        z-index: -2;
     }
 
     #socials
@@ -54,7 +106,7 @@ import Socials from './Socials.astro';
 		left: 0;
 		width: 100%;
 		height: 100%;
-		z-index: -1;
+		z-index: -3;
 		filter: blur(100px);
 	}
 
@@ -67,7 +119,8 @@ import Socials from './Socials.astro';
 		height: 100%;
 		display: flex;
 		justify-content: center;
-        background: #15181a;
+        /* background: #15181a; */
+        background: transparent;
 	}
 
 	#titles {
@@ -76,13 +129,9 @@ import Socials from './Socials.astro';
 		flex-direction: column;
 		justify-content: center;
 		padding: 16px;
-        width: 50%;
-        height:80%
-	}
+        height:80%;
 
-	h1 {
-		font-size: 80px;
-        margin: 0px;
+        text-shadow: 3px 3px 10px rgb(0,0,0,1);
 	}
 
 	pre {
