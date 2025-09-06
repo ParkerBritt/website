@@ -1,8 +1,10 @@
 ---
 title: Cog Pipeline
-slug: cog-pipeline
+# slug: cog-pipeline
 date: 2024-05-02
 description: Pipeline tool for, Rebirth, university short film.
+link: https://github.com/parkerbritt/cog
+image: cog.jpg
 ---
 
 <p align="center">
