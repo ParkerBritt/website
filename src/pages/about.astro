@@ -1,0 +1,109 @@
+---
+import Navbar from '../components/Navbar.astro';
+
+import { Image } from 'astro:assets';
+import profilePhoto from '../assets/images/profile-photo.jpg'
+import Socials from '../components/Socials.astro';
+
+import '../styles/global.css'
+---
+
+<Navbar variant="about" />
+<div class="pageContainer">
+    <div class="hero">
+        <div class="profilePhotoContainer">
+            <Image src={profilePhoto} alt="Parker Britt profile photo" height=400 />
+        </div>
+        <div class="aboutMeLayout">
+            <h2>Parker Britt</h1>
+            <p>
+                    I am a technical artist and programmer, recently having completed my Master's of science at Bournemouth University, specializing in procedural effects, software development, and DCC tool creation.
+                Beyond VFX, I have a strong interest in open-source software and Linux, regularly exploring technologies that contribute to both my professional and personal projects.
+            </p>
+            <div class="socials">
+                <Socials/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body
+    {
+        background: none;
+        height: 100%;
+    }
+
+    html
+    {
+        background: linear-gradient(#181A1B, #1A1C27);
+        height: 100%;
+        background-attachment: fixed;
+    }
+
+    .socials
+    {
+        display: flex;
+        justify-content: flex-end;
+        /* margin-top: 20px; */
+    }
+
+    .pageContainer
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        /* Temporary center until I add more content */
+        height: 70%;
+        justify-content: center;
+        /* Temporary section end */
+    }
+
+    .hero
+    {
+        display: flex;
+        flex-direction: row;
+        text-align: justify;
+        gap: 20%;
+        margin: 40px;
+        align-items: center;
+        width: 80%;
+    }
+
+    @media (max-width: 1200px) {
+        .hero
+        {
+            flex-direction: column;
+        }
+    }
+
+    .profilePhotoContainer
+    {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        color: white;
+        border-radius: 20px;
+        /* background: red; */
+        width: 400px;
+        min-width: 400px;
+        aspect-ratio: 1 / 1;
+
+        overflow: hidden;
+    }
+
+    p
+    {
+        font-size: 1.5rem;
+
+    }
+    
+    .profilePhotoContainer img
+    {
+        height: 100%;
+        object-fit: cover;
+    }
+</style>

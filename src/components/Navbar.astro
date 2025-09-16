@@ -1,0 +1,88 @@
+---
+import '../styles/global.css'
+import NavbarButton from '../components/NavbarButton.astro'
+
+export interface Props {
+  variant?: 'home' | 'general';   // controls behavior/structure
+  threshold?: number;             // scroll threshold
+  links?: { text: string; href?: string }[];
+}
+
+// defaults
+const {
+  variant = 'general',
+  threshold = 400,
+  links = [
+    { text: 'Home',    href: '/#hero' },
+    { text: 'Projects',href: '/#projects' },
+    { text: 'About',   href: '/about' },
+    { text: 'Contact', href: '/#contact' },
+  ],
+} = Astro.props;
+
+const isHome = variant === 'home';
+---
+
+<div class="navbarContainer" data-variant={variant}>
+    <div class="navbar">
+        <div class="navSections">
+            <NavbarButton text=Home href="/#hero" />
+            <NavbarButton text=Projects href="/#projects"/>
+            <NavbarButton text=About href="/about" />
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .navbarContainer[data-variant="home"]
+    {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height:100%;
+    }
+
+    .navbar
+    {
+        position: sticky;
+        top: 0;
+
+        width: 100%;
+        height: 50px;
+        padding-top: 5px;
+        background: transparent;
+        z-index: 4;
+
+        transition-duration: 2s;
+    }
+
+    .navbar[data-scrolled="true"] {
+        backdrop-filter: blur(50px);
+    }
+
+    .navSections
+    {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-around;
+
+        height: 100%;
+        width: 30%;
+    }
+</style>
+
+<script>
+  const THRESHOLD = 400;
+  const navbar = document.querySelector('.navbar');
+
+  function update() {
+    const scrolled = window.scrollY > THRESHOLD;
+    navbar?.setAttribute('data-scrolled', scrolled ? 'true' : 'false');
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('load', update);
+  update();
+</script>

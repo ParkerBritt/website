@@ -1,16 +1,27 @@
 html, body
 {
     background: #15181a;
-;
+    scroll-behavior: smooth;
 }
 
 p, h1, h2, h3, h4
 {
     color: white;
+    font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 }
 
-h2 {
-    margin: 0 0 1em;
-    font-weight: normal;
-    font-size: 20px;
+h1 {
+    font-size: 4rem;
+    margin: 0px;
 }
+h2 {
+    font-size: 3rem;
+    margin: 0px;
+}
+p {
+    font-size: 1rem;
+    margin: 0px;
+    font-weight: normal;
+}
+
+
