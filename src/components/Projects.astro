@@ -16,22 +16,24 @@ const projects = allProjects
     });
 ---
 
-<div id="container" class="projects-component">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-    <section id="projects-title">
-        <h1>
-            Projects
-        </h1>
-        <h2>Programming, art, and more</h1>
-        <!-- <Searchbar /> -->
-    </section>
+<section id="projects">
+    <div id="container" class="projects-component">
+        <img id="background" src={background.src} alt="" fetchpriority="high" />
+        <div id="projects-title">
+            <h1>
+                Projects
+            </h1>
+            <h2>Programming, art, and more</h1>
+            <!-- <Searchbar /> -->
+        </iv>
 
-    <section id="projects-grid">
-        {projects.map((project) => (
-        <ProjectCard project={project}/>
-        ))}
-    </section>
-</div>
+        <div id="projects-grid">
+            {projects.map((project) => (
+            <ProjectCard project={project}/>
+            ))}
+        </div>
+    </div>
+</section>
 
 <style>
 	h1 {

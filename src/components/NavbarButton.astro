@@ -1,13 +1,18 @@
 ---
 const { text } = Astro.props;
+const { href } = Astro.props;
 ---
 
-<div>
+<a href={href}>
     <p>{text}</p>
-
-</div>
+</a>
 
 <style>
+    a
+    {
+        text-decoration: none;
+    }
+
     p
     {
         color: white;

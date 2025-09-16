@@ -1,14 +1,34 @@
 ---
 import '../styles/global.css'
 import NavbarButton from '../components/NavbarButton.astro'
+
+export interface Props {
+  variant?: 'home' | 'general';   // controls behavior/structure
+  threshold?: number;             // scroll threshold
+  links?: { text: string; href?: string }[];
+}
+
+// defaults
+const {
+  variant = 'general',
+  threshold = 400,
+  links = [
+    { text: 'Home',    href: '/#hero' },
+    { text: 'Projects',href: '/#projects' },
+    { text: 'About',   href: '/about' },
+    { text: 'Contact', href: '/#contact' },
+  ],
+} = Astro.props;
+
+const isHome = variant === 'home';
 ---
 
-<div class="navbarContainer">
+<div class="navbarContainer" data-variant={variant}>
     <div class="navbar">
         <div class="navSections">
-            <NavbarButton text=Home />
-            <NavbarButton text=About />
-            <NavbarButton text=Showreel />
+            <NavbarButton text=Home href="/#hero" />
+            <NavbarButton text=Projects href="/#projects"/>
+            <NavbarButton text=About href="/about" />
             <NavbarButton text=Contact />
         </div>
     </div>
@@ -16,7 +36,7 @@ import NavbarButton from '../components/NavbarButton.astro'
 
 
 <style>
-    .navbarContainer
+    .navbarContainer[data-variant="home"]
     {
         position: absolute;
         top: 0;

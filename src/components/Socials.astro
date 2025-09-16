@@ -8,8 +8,18 @@ import SocialButton from './SocialButton.astro';
 const iconSize = 40;
 ---
 
-<div>
+<div class="social-component">
     <SocialButton src={GithubLogo.src} href="https://github.com/parkerbritt"/>
     <SocialButton src={YoutubeLogo.src} href="https://www.youtube.com/@parkerbritt7827"/>
     <SocialButton src={LinkedinLogo.src} href="https://www.linkedin.com/in/parker-britt"/>
 </div>
+
+<style>
+    .social-component
+    {
+        display: flex;
+        gap: 10px;
+    }
+
+
+</style>
