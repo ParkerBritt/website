@@ -14,7 +14,7 @@ const {
         { text: 'Home',    href: '/#hero' },
         { text: 'Projects',href: '/#projects' },
         { text: 'About',   href: '/about' },
-        { text: 'Contact', href: '/about' },
+        { text: 'Github', href: 'https://github.com/parkerbritt' },
     ],
 } = Astro.props;
 ---
@@ -35,7 +35,9 @@ const {
 
         width: 100%;
         height: 50px;
-        padding-top: 5px;
+
+        padding: 0px;
+
         background: transparent;
         z-index: 4;
 
@@ -48,7 +50,7 @@ const {
     }
 
     .navbar[data-scrolled="true"] {
-        backdrop-filter: blur(50px);
+        backdrop-filter: blur(120px);
     }
 
     .navSections

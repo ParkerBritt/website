@@ -7,28 +7,26 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 
 <div id="container">
 	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
+    <section id="hero">
 
-            <div id="titles">
-                <h1>
-                    Parker Britt
-                </h1>
-                <h2>
-                    Houdini TD | Software Developer
-                </h2>
-            </div>
-            <div id="socials">
-                <Socials/>
-            </div>
+        <div id="titles">
+            <h1>
+                Parker Britt
+            </h1>
+            <h2>
+                Houdini TD | Software Developer
+            </h2>
+        </div>
+        <div id="socials">
+            <Socials/>
+        </div>
 
-            <div id="video-overlay"/>
-            <video autoplay loop muted disablepictureinpicture id="background-video">
-                <source src={backgroundVideo} type="video/webm">
-                Your browser does not support the video tag.
-            </video>
-		</section>
-	</main>
+        <div id="video-overlay"/>
+        <video autoplay loop muted disablepictureinpicture id="background-video">
+            <source src={backgroundVideo} type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    </section>
 </div>
 
 <style>
