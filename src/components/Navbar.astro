@@ -23,25 +23,16 @@ const {
 const isHome = variant === 'home';
 ---
 
-<div class="navbarContainer" data-variant={variant}>
-    <div class="navbar">
-        <div class="navSections">
-            <NavbarButton text=Home href="/#hero" />
-            <NavbarButton text=Projects href="/#projects"/>
-            <NavbarButton text=About href="/about" />
-        </div>
+<div class="navbar" data-variant={variant}>
+    <div class="navSections">
+        <NavbarButton text=Home href="/#hero" />
+        <NavbarButton text=Projects href="/#projects"/>
+        <NavbarButton text=About href="/about" />
     </div>
 </div>
 
 
 <style>
-    .navbarContainer[data-variant="home"]
-    {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height:100%;
-    }
 
     .navbar
     {
@@ -55,6 +46,11 @@ const isHome = variant === 'home';
         z-index: 4;
 
         transition-duration: 2s;
+    }
+
+    .navbar[data-variant="home"]
+    {
+        position: fixed;
     }
 
     .navbar[data-scrolled="true"] {
