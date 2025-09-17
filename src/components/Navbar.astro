@@ -3,31 +3,25 @@ import '../styles/global.css'
 import NavbarButton from '../components/NavbarButton.astro'
 
 export interface Props {
-  variant?: 'home' | 'general';   // controls behavior/structure
-  threshold?: number;             // scroll threshold
-  links?: { text: string; href?: string }[];
+    page?: string;
+    links?: { text: string; href?: string }[];
 }
 
 // defaults
 const {
-  variant = 'general',
-  threshold = 400,
-  links = [
-    { text: 'Home',    href: '/#hero' },
-    { text: 'Projects',href: '/#projects' },
-    { text: 'About',   href: '/about' },
-    { text: 'Contact', href: '/#contact' },
-  ],
+    page='',
+    links = [
+        { text: 'Home',    href: '/#hero' },
+        { text: 'Projects',href: '/#projects' },
+        { text: 'About',   href: '/about' },
+        { text: 'Contact', href: '/about' },
+    ],
 } = Astro.props;
-
-const isHome = variant === 'home';
 ---
 
-<div class="navbar" data-variant={variant}>
+<div class="navbar" data-page={page.toLowerCase()}>
     <div class="navSections">
-        <NavbarButton text=Home href="/#hero" />
-        <NavbarButton text=Projects href="/#projects"/>
-        <NavbarButton text=About href="/about" />
+        {links.map((l) => <NavbarButton text={l.text} href={l.href} isActive={l.text.toLowerCase()===page.toLowerCase()}/>)}
     </div>
 </div>
 
@@ -48,7 +42,7 @@ const isHome = variant === 'home';
         transition-duration: 2s;
     }
 
-    .navbar[data-variant="home"]
+    .navbar[data-page="home"]
     {
         position: fixed;
     }
@@ -70,15 +64,15 @@ const isHome = variant === 'home';
 </style>
 
 <script>
-  const THRESHOLD = 400;
-  const navbar = document.querySelector('.navbar');
+    const THRESHOLD = 400;
+    const navbar = document.querySelector('.navbar');
 
-  function update() {
-    const scrolled = window.scrollY > THRESHOLD;
-    navbar?.setAttribute('data-scrolled', scrolled ? 'true' : 'false');
-  }
+    function update() {
+        const scrolled = window.scrollY > THRESHOLD;
+        navbar?.setAttribute('data-scrolled', scrolled ? 'true' : 'false');
+    }
 
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('load', update);
-  update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('load', update);
+    update();
 </script>

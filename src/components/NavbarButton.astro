@@ -1,10 +1,21 @@
 ---
-const { text } = Astro.props;
-const { href } = Astro.props;
+export interface Props {
+    text?: string;
+    href?: string;
+    isActive?: boolean;
+}
+
+const {
+    text,
+    href,
+    isActive = false
+} = Astro.props;
+
+
 ---
 
 <a href={href}>
-    <p>{text}</p>
+    <p data-isActive={isActive}>{text}</p>
 </a>
 
 <style>
@@ -16,7 +27,23 @@ const { href } = Astro.props;
     p
     {
         color: white;
+        opacity: 80%;
         font-size: 1.4rem;
         text-shadow: 2px 2px 5px rgb(0,0,0,0.5);
+    }
+
+    p:hover
+    {
+        text-shadow:
+            -0.2px -0.2px 0 white,
+            0.2px -0.2px 0 white,
+            -0.2px 0.2px 0 white,
+            0.2px 0.2px 0 white;
+        opacity: 85%;
+    }
+
+    p[data-isActive='true']
+    {
+        /* opacity: 70%; */
     }
 </style>
