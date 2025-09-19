@@ -1,6 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css'
+import Navbar from '../../components/Navbar.astro';
+import SourceCodeButton from "../../components/SourceCodeButton.astro"
 
 export async function getStaticPaths() {
     const allprojects = await Astro.glob('../../projects/*{md,mdx}');
@@ -17,15 +19,32 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Layout title={project.frontmatter.title}>
-	<h1>{project.frontmatter.title}</h1>
-	<h2>{project.frontmatter.description}</h2>
-    <div class="project-markdown">
-		<project.Content />
-	</div>
-</Layout>
+<Navbar page=project.slug />
+<div class="content">
+    <Layout title={project.frontmatter.title}>
+        <div class="header">
+            <div class="titles">
+                <h1>{project.frontmatter.title}</h1>
+                <h2>{project.frontmatter.description}</h2>
+            </div>
+            {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
+        </div>
+
+        <div class="project-markdown">
+            <project.Content />
+        </div>
+    </Layout>
+</div>
 
 <style>
+    .header
+    {
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+    }
+
     h1, h2, p
     {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
@@ -35,13 +54,13 @@ const { project } = Astro.props;
 
     h1
     {
-		background: linear-gradient(14deg, #5a189a 0%, #bf00ff 100%);
-        /* filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1)); */
-        font-size: 3rem;
-        font-weight: bold;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+		/* background: linear-gradient(14deg, #5a189a 0%, #bf00ff 100%); */
+		/* -webkit-background-clip: text; */
+		/* -webkit-text-fill-color: transparent; */
 		background-clip: text;
+        /* filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.1)); */
+        font-size: 2.4rem;
+        font-weight: bold;
         display: inline-block;
     }
 
@@ -57,12 +76,13 @@ const { project } = Astro.props;
 		min-height: 100vh;
     }
 
-    body 
+    .content 
     {
         padding:1em;
         margin:auto;
         max-width:1080px;
         background: #181c1e;
+		min-height: 90vh;
     }
 </style>
 
@@ -88,13 +108,18 @@ const { project } = Astro.props;
         font-weight: bold;
     }
 
+    .project-markdown p
+    {
+        font-size: 16px;
+    }
+
     .project-markdown h1 {
         color: white;
         font-size: 28px;
     }
 
     .project-markdown h2 {
-        border-bottom: 1px solid #CCCCCC;
+        border-bottom: 1px solid grey;
         color: white;
         font-size: 24px;
     }

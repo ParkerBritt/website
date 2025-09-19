@@ -1,0 +1,75 @@
+---
+const { src } = Astro.props;
+const iconSize = 24;
+
+import GithubLogo from '../assets/icons/github.svg';
+---
+
+<div class="SourceCodeButton">
+    <a href = {src}>
+        <div class ="content">
+            <img class="SourceCodeButton" src={GithubLogo.src} alt="" width={iconSize}/>
+            <p>Source Code</p>
+        </div>
+    </a>
+</div>
+
+
+<style>
+    .SourceCodeButton
+    {
+        height: fit-content;
+    }
+
+    .SourceCodeButton:hover
+    {
+        /* transform: translateY(-1px); */
+        /* scale: 1.01; */
+        transition-duration: 400ms;
+
+    }
+
+    .SourceCodeButton
+    {
+        transition-duration: 100ms;
+        transition-timing-function: ease-in-out();
+    }
+
+    .SourceCodeButton .content
+    {
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 10px;
+        background: #26272b;
+        border-radius: 10px;
+        width: fit-content;
+        height: fit-content;
+
+        padding: 8px 24px 8px 24px;
+
+        border: 1px solid #46474b;
+
+    }
+
+    .SourceCodeButton:hover .content
+    {
+        background: #282a33
+    }
+
+
+    .SourceCodeButton p
+    {
+        padding-top: 0.35rem;
+        font-size: .875rem;
+        margin: 0px;
+    }
+
+    .SourceCodeButton a{
+        color: inherit;
+        text-decoration: none;
+    }
+
+</style>
