@@ -4,17 +4,70 @@ date: "2025-01-19"
 slug: maya-building-generator
 link: "https://github.com/ParkerBritt/maya_building_generator"
 image: maya-building-generator.png
-description: "Personal project to create procedural buidings in maya "
+description: "Maya tool to create procedural buidings from simple primitives"
 ---
 
 import demoVideo from "./maya-building-generator/demo.mp4";
-
-## Introduction
-Procedural Building Generator is a script for generating 3D urban environments in Autodesk Maya. The system creates customizable building facades and layouts through procedural methods. It is ideal for quickly creating buildings from simple geometry.
+import fig01 from "./maya-building-generator/fig_01.png"
+import { Image } from 'astro:assets';
 
 <video controls>
     <source src={demoVideo} />
 </video>
 
+## Introduction
+
+<div style="display: flex; flex-direction: row; text-align: justify;">
+    <p>
+        I started the project working with the Maya CMDs Python
+        module, but quickly realized it wouldn't be up to the task
+        at hand. It was here I started experimenting with PyMEL
+        and decided to stick with it. It’s truly object-oriented and
+        Pythonic nature was exactly what I needed for this
+        project. I wanted this generator to work on arbitrary
+        geometry, so I started testing with basic shapes. In these
+        images you can see some of the shapes I used
+        throughout the process along with a late version of my
+        building generator applied to the shapes. My first goal
+        was to distribute windows on the surface of each face.
+        This seems easy enough, just loop over the height and
+        width of each face, placing windows as you go. The
+        trouble comes with finding the coordinates to place each
+        window. To do this, I implemented a sampling function using bilinear interpolation along the face.
+    </p>
+
+    <Image src={fig01} alt="Figure showing primitives as resulting building." width="400" style="margin-left:40px"/>
+</div>
+
+## Sampling Function
+
+The entire building system relies on distributing models on a primitive, therefore the function to find the placement positions is instrumental for most components of this project.
+
+As input this function must take coordinates, `s` & `t`, of a given
+quadrilateral face.
+
+Just like regular UVs used for textures, ours are unit parametric coordinates of a flattened surface but that's where the similarities end. Our coordinates are not used for texturing and do not need to be unwrapped since they represent a simple quad.
+
+The sampling function must return the corresponding 3D
+world-space coordinates (𝑥, 𝑦, 𝑧). We can use this world space coordinate to place our model.
+
+Using parametric coordinates as arguments makes it easy to turn a theoretical position into a 3D coordinate.
+To place a door in the center of a wall simply use the ST coordinates `0.5, 0` as arguments, eg. `sample(s=0.5, t=0)`.
+This will return a world space coordinate based on the position, dimensions, shear, and rotation of the wall.
+
+Placing rows or columns of objects, for example when distributing windows is also easy and would look something like this:
+```python
+for(i in range(NumColumns)):
+    s = i/(NumColumns-1)
+    t=0.5
+
+    worldSpacePos = sample(s, t)
+
+    placeObject(worldSpacePos)
+```
+
+### Tangent Alignment Sorting
+I came up with several approaches to consistently ordering the face vertices and ultimately
+settled on what I'll call the **Tangent Alignment Approach**.
 
 

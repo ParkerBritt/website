@@ -19,30 +19,65 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 ---
 
-<Navbar page=project.slug />
-<div class="content">
-    <Layout title={project.frontmatter.title}>
-        <div class="header">
-            <div class="titles">
-                <h1>{project.frontmatter.title}</h1>
-                <h2>{project.frontmatter.description}</h2>
-            </div>
-            {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
-        </div>
+<head>
+    <meta charset="utf-8" />
+</head>
 
-        <div class="project-markdown">
-            <project.Content />
-        </div>
-    </Layout>
+<Navbar page=project.slug />
+<div class="articleContainer">
+    <div class="article">
+        <Layout title={project.frontmatter.title}>
+            <div class="header">
+                <div class="titles">
+                    <h1>{project.frontmatter.title}</h1>
+                    <h2>{project.frontmatter.description}</h2>
+                </div>
+                {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
+            </div>
+
+            <div class="project-markdown">
+                <project.Content />
+            </div>
+        </Layout>
+    </div>
+    <!-- <div class="sideBar"> -->
+    <!--     <h3> About </h3> -->
+    <!--     <p>{project.frontmatter.description}</p> -->
+    <!--     <h3> Toolsets </h3> -->
+    <!--     <p>Python, Maya, PyMel</p> -->
+    <!--     <h3> Lines of Code </h3> -->
+    <!--     <p>368</p> -->
+    <!-- </div> -->
 </div>
 
 <style>
+    .sideBar
+    {
+        display: flex;
+        flex-direction: column;
+
+        justify-content: left;
+
+        width: 300px;
+        background: #181c1e;
+    }
+
+    .articleContainer
+    {
+        display: flex;
+
+        justify-content: center;
+        background: #181c1e;
+    }
+
     .header
     {
         display: flex;
         flex-direction: row;
 
         justify-content: space-between;
+
+        margin-bottom: 40px;
     }
 
     h1, h2, p
@@ -76,11 +111,10 @@ const { project } = Astro.props;
 		min-height: 100vh;
     }
 
-    .content 
+    .article 
     {
         padding:1em;
-        margin:auto;
-        max-width:1080px;
+        max-width:830px;
         background: #181c1e;
 		min-height: 90vh;
     }
@@ -101,7 +135,6 @@ const { project } = Astro.props;
         padding:1em;
         margin:auto;
         max-width:42em;
-        background:#181c1e;
     }
 
     .project-markdown h1, h2, h3, h4, h5, h6 {
@@ -119,7 +152,7 @@ const { project } = Astro.props;
     }
 
     .project-markdown h2 {
-        border-bottom: 1px solid grey;
+        /* border-bottom: 3px solid rgba(255,255,255,0.1); */
         color: white;
         font-size: 24px;
     }
