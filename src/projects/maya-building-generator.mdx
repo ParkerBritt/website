@@ -24,7 +24,7 @@ import ArticleFigure from '../components/ArticleFigure.astro'
     alt="Figure showing primitives as resulting building."
 />
 
-This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into it's own standalone tool. Because of it's origins and deadlines the project is ad hoc rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
+This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into its own standalone tool. Because of it's origins and deadlines the project is ad hoc rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
 
 Starting with simple primitives modeled by the user the tool should automatically create detailed buildings, following the exact shape and dimensions of those primitives.
 In these images you can see some of the shapes I used
@@ -32,7 +32,7 @@ throughout the process to stress and test additions to the code along with the r
 
 To achieve this I'll use the help of kits to create the basic pieces and handle everything else in code.
 I modeled a modest kit for testing and the next step is to figure out where those pieces go in code.
-Lets start with the windows, this should be easy, just loop over the height and
+Let's start with the windows, this should be easy, just loop over the height and
 width of each face, placing windows as you go. The
 trouble starts with finding the exact coordinates to place each
 window. To do this, I'll implement a sampling function that uses bilinear interpolation to get the right positions along each side of the building.
@@ -42,7 +42,7 @@ Let's start by defining the inputs and outputs of this function.
 As input this function must take parametric coordinates of a given quadrilateral face,  
 ```
 Input: (s, t)
-```   
+```  
 and as output it must return the 3D world-space coordinates that correspond to our inputs  
 ```
 Output: (𝑥, 𝑦, 𝑧)
@@ -170,7 +170,7 @@ Each component has its own logic, but they all follow the same pattern: Source g
 Windows are copied into grids, doors are placed at semi-random intervals on the bottom floor, and bricks are baked into stacks before being instanced onto the wall edges.
 The primitive is also being modified, the tool extrudes the roof, booleans gaps for windows, configures shaders, and scales trims into place (making sure to inversely scale the uvs to avoid distortion).
 
-Each component has it's own logic, but they a similar structure.
+Each component has its own logic, but they share a similar structure.
 
 ## Reference
 
@@ -256,7 +256,7 @@ The project is made up of more than 13 shaders for the various models, such as t
 />
 
 I spent a lot of time considering and modifying for execution
-speed. I built a loading bar so I could monitor the
+speed. I built a loading bar, so I could monitor the
 progress and benchmark different optimization
 techniques. I used instancing to reduce the memory
 footprint of heavily repeated objects, prebaking/combining heavy
@@ -269,17 +269,24 @@ I found that by merging meshes together Maya could handle the same amount of pol
 
 ## Self Reflection & Future Work
 
-Overall, I’m satisfied with the result given the time I had, although there are several areas I'd look to for improvement.
+<ArticleFigure
+    imagePath="maya-building-generator/fig_debug.png"
+    side="left"
+    width="350"
+    alt="Figure showing the debugging process."
+/>
+
+Overall, I’m satisfied with the result, given the time I had, although there are several areas I'd look to for improvement.
 
 Throughout the project I mostly focused on solving the technical challenges involved, slightly neglecting the visual result.
-Because of time constraints and limited modelling skills I made only a few variations of the asset kit models.
+Because of time constraints and limited modeling skills I made only a few variations of the asset kit models.
 For future work the addition of a more varied and advanced kit could greatly improve the visual product.
 
 This project was created ad hoc and as a result was mostly tailored for that particular use case. 
-Because of it's specialization additionally user control and generalization would further the tools usefulness.
+Because of its specialization additionally user control and generalization would further the tool's usefulness.
 
 I managed great strides in performance from where the project started, but the generation is still slow.
 Whether this is a limitation of the platform or my techniques is not clear, but additional work is needed.
 
-Overall, unless I'm seeking to punish myself, I'm not keen on doing more procedural modeling in Autodesk Maya.
-The software's design doesn't lend itself to this type of project and while I enjoyed the mathematics and problem solving I didn't enjoy the instability and performance issues along the way.
+Overall, unless I want to punish myself, I'm not keen on doing more procedural modeling in Autodesk Maya.
+The software's design doesn't lend itself to this type of project and while I enjoyed the mathematics and problem-solving I didn't enjoy the instability and performance issues along the way.
