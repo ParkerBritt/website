@@ -1,0 +1,59 @@
+---
+const {
+imagePath,
+imagePaths,
+alt="",
+side="left",
+width,
+height
+} = Astro.props;
+
+import { Image } from 'astro:assets';
+
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{jpeg,jpg,png,gif}");
+---
+
+<span data-side={side} >
+    {imagePath && (
+        <Image
+            src={images["/src/projects/"+imagePath]()} 
+            alt={alt}
+            width={width}
+        />
+    )}
+    {imagePaths && (
+    imagePaths.map((imagePath) =>
+        <Image
+            src={images["/src/projects/"+imagePath]()} 
+            alt={alt}
+            height={height}
+        />
+    )
+    )}
+</span>
+
+<style>
+    span
+    {
+        display: flex;
+        margin-top:15px;
+        gap: 30px;
+    }
+
+    span[data-side="left"]
+    {
+        float: left;
+        margin-right: 20px;
+    }
+
+    span[data-side="right"]
+    {
+        float: right;
+        margin-left: 20px;
+    }
+
+    img
+    {
+        border-radius: 20px;
+    }
+</style>

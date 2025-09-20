@@ -8,10 +8,8 @@ description: "Maya tool to create procedural buidings from simple primitives"
 ---
 
 import demoVideo from "./maya-building-generator/demo.mp4";
-import fig01 from "./maya-building-generator/fig_01.png"
-import figParametricTransform from "./maya-building-generator/fig_02.png"
-import figWallUVs from "./maya-building-generator/fig_03.png"
-import { Image } from 'astro:assets';
+
+import ArticleFigure from '../components/ArticleFigure.astro'
 
 <video controls>
     <source src={demoVideo} />
@@ -19,30 +17,25 @@ import { Image } from 'astro:assets';
 
 ## Introduction
 
-<div style="display: flex; flex-direction: row; text-align: justify;">
-    <div>
-        <p>
-            This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into it's own standalone tool. Because of it's origins and deadlines the project is ad-hock rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
-        </p>
+<ArticleFigure
+    imagePath="maya-building-generator/fig_01.png"
+    side="right"
+    width="400"
+    alt="Figure showing primitives as resulting building."
+/>
 
-        <p>
-            Starting with simple primitives modeled by the user the tool should automatically create detailed buildings, following the exact shape and dimensions of those primitives.
-            In these images you can see some of the shapes I used
-            throughout the process to stress and test additions to the code along with the resulting building on the bottom.
-        </p>
-        <p>
-            To achieve this I'll use the help of kits to create the basic pieces and handle everything else in code.
-            I modeled a modest kit for testing and the next step is to figure out where those pieces go in code.
-            Lets start with the windows, this should be easy, just loop over the height and
-            width of each face, placing windows as you go. The
-            trouble starts with finding the exact coordinates to place each
-            window. To do this, I'll implement a sampling function that uses bilinear interpolation to get the right positions along each side of the building.
+This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into it's own standalone tool. Because of it's origins and deadlines the project is ad-hock rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
 
-        </p>
-    </div>
+Starting with simple primitives modeled by the user the tool should automatically create detailed buildings, following the exact shape and dimensions of those primitives.
+In these images you can see some of the shapes I used
+throughout the process to stress and test additions to the code along with the resulting building on the bottom.
 
-    <Image src={fig01} alt="Figure showing primitives as resulting building." width="400" style="margin-left:40px"/>
-</div>
+To achieve this I'll use the help of kits to create the basic pieces and handle everything else in code.
+I modeled a modest kit for testing and the next step is to figure out where those pieces go in code.
+Lets start with the windows, this should be easy, just loop over the height and
+width of each face, placing windows as you go. The
+trouble starts with finding the exact coordinates to place each
+window. To do this, I'll implement a sampling function that uses bilinear interpolation to get the right positions along each side of the building.
 
 ## Sampling Function
 Let's start by defining the inputs and outputs of this function.  
@@ -55,13 +48,16 @@ and as output it must return the 3D world-space coordinates that correspond to o
 Output: (𝑥, 𝑦, 𝑧)
 ```
 
-
-<span style="display:block; float: left; margin-right: 20px;">
-<Image src={figParametricTransform} alt="Figure showing parametric mapping from 2D to 3D." width="400" style="border-radius: 20px"/>
-</span>
+<ArticleFigure
+    imagePath="maya-building-generator/fig_02.png"
+    side="left"
+    width="400"
+    alt="Figure showing parametric mapping from 2D to 3D."
+/>
 
 You can think of our *s* & *t* coordinates like the UVs used for texturing.
 When working with UVs we cut and flatten complex shapes into a 1x1 square. When we draw on the square our drawing is mapped from 2D relative coordinates on the UVs to 3D spatial coordinates on the model.
+
 
 The 2D coordinate represents a percent of the surface, starting at 0 and ending at 1. So no matter the shape or size of the quad is `(0,0)` will always be the bottom left and `(1,1)` will always be the top right.
 
@@ -82,9 +78,11 @@ for(i in range(NumColumns)):
     placeObject(worldSpacePos)
 ```
 
-<span style="display:block; float: left; margin-right: 20px;">
-<Image src={figWallUVs} alt="Figure showing parametric mapping from 2D to 3D." width="400" style="border-radius: 20px"/>
-</span>
+<ArticleFigure
+    imagePath="maya-building-generator/fig_03.png"
+    width="400"
+    alt="Figure showing tangents and normals on geometry."
+/>
 
 ### Bilinear Interpolation
 
@@ -102,6 +100,135 @@ Bilinear interpolation only works if the points are consistently ordered when pa
 If the order is reversed so is the output leading to doors on the roof and diagonal lines of windows running across the walls.
 
 ### Tangent Alignment Sorting
-I came up with several approaches to consistently ordering the face vertices, each one failing in some aspect until I ultimately
-designed what I'll call the **Tangent Alignment Approach**.
+I came up with several approaches to consistently order the face vertices, each one failing in some aspect until I ultimately
+designed what I'll call the **Tangent Alignment Approach**. This method works by comparing the position of each vertex to the center.
 
+Before jumping into the formula we'll need to establish/calculate a few things first. Starting with the face tangent $\hat{T}$ where  
+$\hat{T} = \hat{N} \times \hat{Y}$ and $\hat{Y} = (0,1,0).$
+
+Next we need to compute the center point $C$ which we can get by averaging out all the vertex positions.  
+$\vec{C} = \frac{1}{n} \sum_{i=1}^n \vec{P}_i$  
+The math for this looks unnecessarily complicated, but the process is simple and can be more simply expressed through pseudo code.
+```python
+total=0
+
+for(position in vertexPositions):
+    total+=position
+total/len(vertexPositions)
+```
+
+Finally we compute a direction vector from the center of the face to each vertex.  
+$\hat{P}_d = \frac{\vec{P}-\vec{C}}{|\vec{P}-\vec{C}|}$
+
+<ArticleFigure
+    imagePath="maya-building-generator/fig_04.png"
+    width="400"
+    alt="Function visualizing function outputs"
+/>
+
+Now that we have all the components we can build the function  
+$f(\vec{P}) = ( sign(\hat{P}_d \cdot \hat{T}), sign(\hat{P}_d \cdot \hat{Y}))$
+
+This is where it's all leading up to, now we can assign the point order based on the output of this function.
+
+$f(\vec{P}_1) = (-1, -1)$  
+$f(\vec{P}_2) = ( 1, -1)$  
+$f(\vec{P}_3) = (-1, 1)$  
+$f(\vec{P}_4) = (1, 1)$
+
+This means that if the result of our function for a given point $\vec{P}$ is $(-1,-1)$ then that point will be sorted first.
+$(1,-1)$ second, and so on.
+
+With this the sampling function is complete and can be used to create the rest of the project.
+
+## Kit Distribution
+<ArticleFigure
+    imagePath="maya-building-generator/fig_05.png"
+    side="right"
+    width="400"
+    alt="Figure showing kit assets."
+/>
+
+As stated previously the tool uses user built models and places them on each wall of the building.
+It starts by splitting the input primitive into conceptual pieces.
+The walls and roofs are identified based on the cross product between their face normal and $Y$ then processed based on their independent logic.
+
+### Walls
+Walls start by gathering important data such as normals, tangents, and bounds as well as sorting the corner vertices.
+It then executes logic to populate each component of the building: windows, trims, doors, etc.
+
+This logic uses the face normal as well as the sampling function's output to construct a 4x4 transform matrix which is used to translate objects to their correct position, rotation, and scale.
+Each component has its own logic, but they all follow the same pattern: Source geometry is chosen, duplicated, and transformed by the aforementioned matrix.
+
+<ArticleFigure
+    imagePath="maya-building-generator/fig_06.png"
+    side="left"
+    width="400"
+    alt="Figure showing kit assets."
+/>
+
+Windows are copied into grids, doors are placed at semi-random intervals on the bottom floor, and bricks are baked into stacks before being instanced onto the wall edges.
+The primitive is also being modified, the tool extrudes the roof, booleans gaps for windows, configures shaders, and scales trims into place (making sure to inversely scale the uvs to avoid distortion).
+
+Each component has it's own logic, but they a similar structure.
+
+## Reference
+
+The style of architecture was directly inspired by Barcelona, Spain.
+I gathered reference, finding what made these buildings similar and different, noticing styles of trims, usage of balconies on windows, and bricks on each corner.
+
+export const colorPalleteSize = 30;
+
+<span style="display: flex; gap: 15px; float: right;">
+  <div
+    style={{
+      width: colorPalleteSize+"px",
+      height: colorPalleteSize+"px",
+      background: "#ffa396",
+      borderRadius: colorPalleteSize/2+"px",
+    }}
+  />
+  <div
+    style={{
+      width: colorPalleteSize+"px",
+      height: colorPalleteSize+"px",
+      background: "#958472",
+      borderRadius: colorPalleteSize/2+"px",
+    }}
+  />
+  <div
+    style={{
+      width: colorPalleteSize+"px",
+      height: colorPalleteSize+"px",
+      background: "#d6905c",
+      borderRadius: colorPalleteSize/2+"px",
+    }}
+  />
+  <div
+    style={{
+      width: colorPalleteSize+"px",
+      height: colorPalleteSize+"px",
+      background: "#c7905c",
+      borderRadius: colorPalleteSize/2+"px",
+    }}
+  />
+  <div
+    style={{
+      width: colorPalleteSize+"px",
+      height: colorPalleteSize+"px",
+      background: "#fff5c3",
+      borderRadius: colorPalleteSize/2+"px",
+    }}
+  />
+</span>
+
+<ArticleFigure
+    imagePaths={["maya-building-generator/fig_01.png","maya-building-generator/fig_02.png"]}
+    side="center"
+    height="200"
+    alt="Figure showing primitives as resulting building."
+/>
+
+## Shaders
+
+## Self Reflection
