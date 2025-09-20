@@ -9,6 +9,8 @@ description: "Maya tool to create procedural buidings from simple primitives"
 
 import demoVideo from "./maya-building-generator/demo.mp4";
 import fig01 from "./maya-building-generator/fig_01.png"
+import figParametricTransform from "./maya-building-generator/fig_02.png"
+import figWallUVs from "./maya-building-generator/fig_03.png"
 import { Image } from 'astro:assets';
 
 <video controls>
@@ -18,42 +20,56 @@ import { Image } from 'astro:assets';
 ## Introduction
 
 <div style="display: flex; flex-direction: row; text-align: justify;">
-    <p>
-        I started the project working with the Maya CMDs Python
-        module, but quickly realized it wouldn't be up to the task
-        at hand. It was here I started experimenting with PyMEL
-        and decided to stick with it. It’s truly object-oriented and
-        Pythonic nature was exactly what I needed for this
-        project. I wanted this generator to work on arbitrary
-        geometry, so I started testing with basic shapes. In these
-        images you can see some of the shapes I used
-        throughout the process along with a late version of my
-        building generator applied to the shapes. My first goal
-        was to distribute windows on the surface of each face.
-        This seems easy enough, just loop over the height and
-        width of each face, placing windows as you go. The
-        trouble comes with finding the coordinates to place each
-        window. To do this, I implemented a sampling function using bilinear interpolation along the face.
-    </p>
+    <div>
+        <p>
+            This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into it's own standalone tool. Because of it's origins and deadlines the project is ad-hock rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
+        </p>
+
+        <p>
+            Starting with simple primitives modeled by the user the tool should automatically create detailed buildings, following the exact shape and dimensions of those primitives.
+            In these images you can see some of the shapes I used
+            throughout the process to stress and test additions to the code along with the resulting building on the bottom.
+        </p>
+        <p>
+            To achieve this I'll use the help of kits to create the basic pieces and handle everything else in code.
+            I modeled a modest kit for testing and the next step is to figure out where those pieces go in code.
+            Lets start with the windows, this should be easy, just loop over the height and
+            width of each face, placing windows as you go. The
+            trouble starts with finding the exact coordinates to place each
+            window. To do this, I'll implement a sampling function that uses bilinear interpolation to get the right positions along each side of the building.
+
+        </p>
+    </div>
 
     <Image src={fig01} alt="Figure showing primitives as resulting building." width="400" style="margin-left:40px"/>
 </div>
 
 ## Sampling Function
+Let's start by defining the inputs and outputs of this function.  
+As input this function must take parametric coordinates of a given quadrilateral face,  
+```
+Input: (s, t)
+```   
+and as output it must return the 3D world-space coordinates that correspond to our inputs  
+```
+Output: (𝑥, 𝑦, 𝑧)
+```
 
-The entire building system relies on distributing models on a primitive, therefore the function to find the placement positions is instrumental for most components of this project.
 
-As input this function must take coordinates, `s` & `t`, of a given
-quadrilateral face.
+<span style="display:block; float: left; margin-right: 20px;">
+<Image src={figParametricTransform} alt="Figure showing parametric mapping from 2D to 3D." width="400" style="border-radius: 20px"/>
+</span>
 
-Just like regular UVs used for textures, ours are unit parametric coordinates of a flattened surface but that's where the similarities end. Our coordinates are not used for texturing and do not need to be unwrapped since they represent a simple quad.
+You can think of our *s* & *t* coordinates like the UVs used for texturing.
+When working with UVs we cut and flatten complex shapes into a 1x1 square. When we draw on the square our drawing is mapped from 2D relative coordinates on the UVs to 3D spatial coordinates on the model.
 
-The sampling function must return the corresponding 3D
-world-space coordinates (𝑥, 𝑦, 𝑧). We can use this world space coordinate to place our model.
+The 2D coordinate represents a percent of the surface, starting at 0 and ending at 1. So no matter the shape or size of the quad is `(0,0)` will always be the bottom left and `(1,1)` will always be the top right.
+
+It's important to note that unlike UVs, our coordinates are not used for texturing and do not need to be manually unwrapped since they represent a simple quad.
 
 Using parametric coordinates as arguments makes it easy to turn a theoretical position into a 3D coordinate.
-To place a door in the center of a wall simply use the ST coordinates `0.5, 0` as arguments, eg. `sample(s=0.5, t=0)`.
-This will return a world space coordinate based on the position, dimensions, shear, and rotation of the wall.
+Take a door for example, if I want to place a door in the center-bottom of a wall I can just use the ST coordinates `(0.5, 0)` as arguments.
+The function will return the world space coordinates `(x,y,z)` where we need to put our model, taking into account the translation, dimensions, shear, and rotation of the wall.
 
 Placing rows or columns of objects, for example when distributing windows is also easy and would look something like this:
 ```python
@@ -66,8 +82,26 @@ for(i in range(NumColumns)):
     placeObject(worldSpacePos)
 ```
 
-### Tangent Alignment Sorting
-I came up with several approaches to consistently ordering the face vertices and ultimately
-settled on what I'll call the **Tangent Alignment Approach**.
+<span style="display:block; float: left; margin-right: 20px;">
+<Image src={figWallUVs} alt="Figure showing parametric mapping from 2D to 3D." width="400" style="border-radius: 20px"/>
+</span>
 
+### Bilinear Interpolation
+
+Because our starting walls are simple linear quadrilaterals, I can use bilinear interpolation as the heart of the sampling function.
+
+Linear interpolation is a simple but extremely useful mathematical concept to smoothly transition from one value to another.
+It works by taking to inputs and a bias. When you increase the bias the strength of one value goes up and the other goes down.
+Bilinear interpolation is when we perform this process in two dimensions.
+
+For two dimensions we'll need two biases, using our two **s** & **t** coordinates.
+For our four values to interpolate between we use our four corner coordinates.
+
+Bilinear interpolation provides the perfect solution for this problem, but with a very important condition.
+Bilinear interpolation only works if the points are consistently ordered when passed to the function.
+If the order is reversed so is the output leading to doors on the roof and diagonal lines of windows running across the walls.
+
+### Tangent Alignment Sorting
+I came up with several approaches to consistently ordering the face vertices, each one failing in some aspect until I ultimately
+designed what I'll call the **Tangent Alignment Approach**.
 
