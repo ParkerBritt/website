@@ -24,7 +24,7 @@ import ArticleFigure from '../components/ArticleFigure.astro'
     alt="Figure showing primitives as resulting building."
 />
 
-This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into it's own standalone tool. Because of it's origins and deadlines the project is ad-hock rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
+This project was created during my postgraduate degree, starting as a bonus objective but slowly evolved into it's own standalone tool. Because of it's origins and deadlines the project is ad hoc rather than general purpose. My goals are to experiment and explore procedural modeling practices using python in Autodesk Maya.
 
 Starting with simple primitives modeled by the user the tool should automatically create detailed buildings, following the exact shape and dimensions of those primitives.
 In these images you can see some of the shapes I used
@@ -177,9 +177,9 @@ Each component has it's own logic, but they a similar structure.
 The style of architecture was directly inspired by Barcelona, Spain.
 I gathered reference, finding what made these buildings similar and different, noticing styles of trims, usage of balconies on windows, and bricks on each corner.
 
-export const colorPalleteSize = 30;
+export const colorPalleteSize = 35;
 
-<span style="display: flex; gap: 15px; float: right;">
+<span style="display: flex; flex-direction: column; gap: 18px; float: right;">
   <div
     style={{
       width: colorPalleteSize+"px",
@@ -223,12 +223,63 @@ export const colorPalleteSize = 30;
 </span>
 
 <ArticleFigure
-    imagePaths={["maya-building-generator/fig_01.png","maya-building-generator/fig_02.png"]}
-    side="center"
-    height="200"
-    alt="Figure showing primitives as resulting building."
+    imagePaths={[
+        "maya-building-generator/fig_reference_01.png",
+        "maya-building-generator/fig_reference_02.png",
+        "maya-building-generator/fig_reference_03.png",
+        "maya-building-generator/fig_reference_04.png"
+    ]}
+    side="none"
+    height="250"
+    alt="Reference images of Spanish architecture."
 />
 
 ## Shaders
+I built several shaders, reading attributes set by the code to define properties such as color.
+Each building receives semi-random attribute values, making each building visually distinct in color and geometry.
+The project is made up of more than 13 shaders for the various models, such as the one pictured below.
 
-## Self Reflection
+<ArticleFigure
+    imagePath="maya-building-generator/fig_shaders.png"
+    side="none"
+    fillWidth="true"
+    alt="Figure showing a shader used to construct the building."
+/>
+
+## Optimization
+
+<ArticleFigure
+    imagePath="maya-building-generator/fig_loading.png"
+    side="right"
+    width="250"
+    alt="Figure showing kit assets."
+/>
+
+I spent a lot of time considering and modifying for execution
+speed. I built a loading bar so I could monitor the
+progress and benchmark different optimization
+techniques. I used instancing to reduce the memory
+footprint of heavily repeated objects, prebaking/combining heavy
+geometry processes for reuse, and batching boolean operations into a single action.
+
+Along with Maya's slow copy operation, I encountered massive performance hits after several copies.
+While software like Houdini can easily handle millions of instanced models, Maya slows to a crawl after a couple hundred.
+Based on observation Maya seems to exponentially degrade in performance the more objects are in a scene.
+I found that by merging meshes together Maya could handle the same amount of polygons with much better performance.
+
+## Self Reflection & Future Work
+
+Overall, I’m satisfied with the result given the time I had, although there are several areas I'd look to for improvement.
+
+Throughout the project I mostly focused on solving the technical challenges involved, slightly neglecting the visual result.
+Because of time constraints and limited modelling skills I made only a few variations of the asset kit models.
+For future work the addition of a more varied and advanced kit could greatly improve the visual product.
+
+This project was created ad hoc and as a result was mostly tailored for that particular use case. 
+Because of it's specialization additionally user control and generalization would further the tools usefulness.
+
+I managed great strides in performance from where the project started, but the generation is still slow.
+Whether this is a limitation of the platform or my techniques is not clear, but additional work is needed.
+
+Overall, unless I'm seeking to punish myself, I'm not keen on doing more procedural modeling in Autodesk Maya.
+The software's design doesn't lend itself to this type of project and while I enjoyed the mathematics and problem solving I didn't enjoy the instability and performance issues along the way.

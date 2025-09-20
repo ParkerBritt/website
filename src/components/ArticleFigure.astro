@@ -4,6 +4,7 @@ imagePath,
 imagePaths,
 alt="",
 side="left",
+fillWidth="false",
 width,
 height
 } = Astro.props;
@@ -13,7 +14,10 @@ import { Image } from 'astro:assets';
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{jpeg,jpg,png,gif}");
 ---
 
-<span data-side={side} >
+<span
+    data-side={side}
+    data-fillWidth={fillWidth}
+>
     {imagePath && (
         <Image
             src={images["/src/projects/"+imagePath]()} 
@@ -40,6 +44,11 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{
         gap: 30px;
     }
 
+    span[data-fillWidth="true"], span[data-fillWidth="true"] img
+    {
+        width: 100%;
+    }
+
     span[data-side="left"]
     {
         float: left;
@@ -55,5 +64,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{
     img
     {
         border-radius: 20px;
+        height: auto;
+        object-fit: contain;
     }
 </style>
