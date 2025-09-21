@@ -31,14 +31,12 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 
 <style>
 	h1 {
-		font-size: 100px;
+        font-size: clamp(50px, 14vw, 100px);
         margin: 0px;
 	}
 	h2 {
-		font-size: 25px;
+        font-size: clamp(15px, 3vw, 25px);
 	}
-
-
 </style>
 
 <style is:inline>
@@ -168,56 +166,5 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 		background: rgba(255, 255, 255, 1);
 		border-radius: 16px;
 		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
-
-		#titles {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
-		}
 	}
 </style>
