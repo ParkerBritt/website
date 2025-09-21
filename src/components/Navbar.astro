@@ -44,7 +44,18 @@ const {
         z-index: 4;
 
         transition-duration: 2s;
+
+        border-bottom: 1px solid rgba(200,200,200,0);
     }
+
+    @media (max-width: 600px) {
+        .navbar
+        {
+            border-bottom-width: 2px;
+
+        }
+    }
+
 
     .navbar[data-page="home"]
     {
@@ -53,6 +64,7 @@ const {
 
     .navbar[data-scrolled="true"] {
         backdrop-filter: blur(20px);
+        border-bottom-color:rgba(255,255,255,0.05);
     }
 
     .navSections
