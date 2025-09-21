@@ -30,6 +30,8 @@ const {
 
     .navbar
     {
+        display: flex;
+
         position: sticky;
         top: 0;
 
@@ -61,7 +63,19 @@ const {
         justify-content: space-around;
 
         height: 100%;
-        width: 30%;
+        width: clamp(350px, 50%, 500px);
+    }
+
+    @media (max-width: 600px) {
+        .navbar
+        {
+            justify-content: center;
+        }
+
+        .navSections
+        {
+            width: 100%;
+        }
     }
 </style>
 
