@@ -12,11 +12,15 @@ height
 import { Image } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{jpeg,jpg,png,gif}");
+
+const imageCount = imagePaths ? imagePaths.length : 1;
 ---
 
 <span
     data-side={side}
     data-fillWidth={fillWidth}
+    data-multiImages={imageCount>1}
+    style={`--img-width: ${width}px; --img-scaling: ${width*0.1}%;`}
 >
     {imagePath && (
         <Image
@@ -39,16 +43,16 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{
 <style>
     span
     {
-        display: flex;
+        display: block;
         margin-top:15px;
         gap: 30px;
+        width: clamp(10px, var(--img-scaling, 50%), var(--img-width, auto));
     }
 
-    span[data-fillWidth="true"], span[data-fillWidth="true"] img
+    span[data-fillWidth="true"]
     {
         width: 100%;
     }
-
     span[data-side="left"]
     {
         float: left;
@@ -66,5 +70,15 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{
         border-radius: 20px;
         height: auto;
         object-fit: contain;
+        width: 100%;
+    }
+
+    span[data-multiImages="true"]
+    {
+
+    }
+    span[data-multiImages="true"] img
+    {
+        width: auto;
     }
 </style>
