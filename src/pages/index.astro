@@ -4,10 +4,36 @@ import Projects from '../components/Projects.astro';
 import Navbar from '../components/Navbar.astro';
 import Layout from '../layouts/Layout.astro';
 import '../styles/global.css'
+import background from '../assets/background.svg';
 ---
 
 <Layout>
+	<!-- <img id="background" src={background.src} alt="" fetchpriority="high" /> -->
 	<Navbar page="home" />
 	<Hero />
 	<Projects />
 </Layout>
+
+<style>
+    html
+    {
+        background: linear-gradient(#181A1B, #1A1C27);
+        /* background: linear-gradient(#272a2b, #212640); */
+        background: #181A1B;
+        /* background: black; */
+        height: 100%;
+        background-attachment: fixed;
+    }
+
+    #background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -3;
+        opacity: 1;
+		filter: blur(100px);
+	}
+
+</style>

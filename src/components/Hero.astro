@@ -1,12 +1,10 @@
 ---
 import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
 import Socials from './Socials.astro';
 import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 ---
 
 <div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
     <section id="hero">
 
         <div id="titles">
@@ -70,6 +68,8 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 
         overflow: hidden;
         position: relative;
+
+        box-shadow: 0px 0px 50px rgba(0,0,0,0.4);
     }
 
     #background-video
@@ -93,17 +93,7 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 	body {
 		margin: 0;
 		width: 100%;
-		height: 80%;
-	}
-
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -3;
-		filter: blur(100px);
+		height: 85%;
 	}
 
 	#container {
