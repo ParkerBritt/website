@@ -1,0 +1,143 @@
+---
+type Props = { text: string; video: string ; id: string};
+const {text, video, id} = Astro.props;
+import closeIcon from '../assets/icons/x.svg'
+---
+
+<!-- TODO: add lazy video loading -->
+
+<button id={`showreelOpenButton-${id}`} class="showreelOpenButton">
+    {text}
+</button>
+
+<div id={`showreelPopup-${id}`} class="showreelPopup">
+    <div class="videoContainer">
+        <button id={`showreelCloseButton-${id}`} class="showreelCloseButton">
+            <img src={closeIcon.src}>
+        </button>
+        <video controls id={`showreelVideo-${id}`}>
+            <source src={video} />
+        </video>
+    </div>
+</div>
+
+
+<style>
+    .showreelPopup
+    {
+        display: none;
+
+        position: fixed;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+
+        top: 0px;
+        left: 0px;
+
+        height: 100%;
+        width: 100%;
+
+        z-index: 20;
+    }
+
+    video
+    {
+        width:100%;
+        border-radius: 10px;
+    }
+
+    .showreelPopup.show
+    {
+        display: flex;
+
+        align-items: center;
+        justify-content: center
+    }
+
+    img
+    {
+        width: 24px;
+    }
+
+    .videoContainer
+    {
+        background: none;
+        display: flex;
+
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+
+        width: 90%;
+        height: 90%;
+    }
+
+    .showreelOpenButton
+    {
+        background: none;
+        border: 2px solid white;
+        padding: 5px 15px 5px 15px;
+        border-radius: 10px;
+        color: white;
+        font-size: 25px;
+        cursor: pointer;
+
+        box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .showreelOpenButton:hover
+    {
+        background: white;
+        color: black;
+
+    }
+
+    .showreelCloseButton
+    {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+</style>
+
+<script define:vars={{id}}>
+    const showreelPopup = document.getElementById("showreelPopup-" + id);
+
+    const showreelOpenButton = document.getElementById("showreelOpenButton-" + id);
+    const showreelCloseButton = document.getElementById("showreelCloseButton-" + id);
+    const showreelVideo = document.getElementById("showreelVideo-" + id);
+
+    function openPopup()
+    {
+        showreelPopup.classList.add("show");
+        showreelVideo.currentTime = 0;
+        showreelVideo.play();
+    }
+
+    function closePopup()
+    {
+        showreelPopup.classList.remove("show");
+        showreelVideo.pause();
+        showreelVideo.currentTime = 0;
+    }
+
+    showreelOpenButton.addEventListener("click", () => {
+        openPopup();
+    });
+
+    showreelCloseButton.addEventListener("click", () => {
+        closePopup();
+    });
+
+    showreelPopup.addEventListener("click", () => {
+        closePopup();
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && showreelPopup.classList.contains("show")) {
+          closePopup();
+        }
+    });
+
+</script>

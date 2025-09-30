@@ -1,19 +1,27 @@
 ---
 import astroLogo from '../assets/astro.svg';
 import Socials from './Socials.astro';
+import ShowreelButton from './ShowreelPopupButton.astro';
 import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
+
+import showreelVideo from "../assets/video/showreel_02_av1_1440p.webm";
+import techreelVideo from "../assets/video/techreel_02_av1_1440p.webm";
 ---
 
 <div id="container">
     <section id="hero">
 
         <div id="titles">
-            <h1>
-                Parker Britt
-            </h1>
             <h2>
                 Houdini TD | Software Developer
             </h2>
+            <h1>
+                Parker Britt
+            </h1>
+            <div class="show-buttons">
+                <ShowreelButton text="Showreel" video={showreelVideo} id="techreel" />
+                <ShowreelButton text="Tech Reel" video={techreelVideo} id="showreel" />
+            </div>
         </div>
         <div id="socials">
             <Socials/>
@@ -29,12 +37,21 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 
 <style>
 	h1 {
-        font-size: clamp(50px, 14vw, 100px);
+        font-size: clamp(50px, 14vw, 120px);
         margin: 0px;
+        font-weight: 800;
 	}
 	h2 {
-        font-size: clamp(15px, 3vw, 25px);
+        font-size: clamp(15px, 3vw, 30px);
+        font-weight: 100;
 	}
+
+    .show-buttons
+    {
+        display: flex;
+        gap: 20px;
+    }
+
 </style>
 
 <style is:inline>
@@ -111,13 +128,13 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 
 	#titles {
 		display: flex;
-		align-items: start;
+		align-items: center;
 		flex-direction: column;
 		justify-content: center;
 		padding: 16px;
         height:80%;
 
-        text-shadow: 3px 3px 10px rgb(0,0,0,1);
+        text-shadow: 5px 5px 20px rgb(0,0,0,1);
 	}
 
 	pre {
@@ -158,3 +175,4 @@ import backgroundVideo from '../assets/video/home_background_001_384x216.webm'
 		border: 1px solid white;
 	}
 </style>
+
