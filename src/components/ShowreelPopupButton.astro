@@ -4,8 +4,6 @@ const {text, video, id} = Astro.props;
 import closeIcon from '../assets/icons/x.svg'
 ---
 
-<!-- TODO: add lazy video loading -->
-
 <button id={`showreelOpenButton-${id}`} class="showreelOpenButton">
     {text}
 </button>
@@ -15,7 +13,7 @@ import closeIcon from '../assets/icons/x.svg'
         <button id={`showreelCloseButton-${id}`} class="showreelCloseButton">
             <img src={closeIcon.src}>
         </button>
-        <video controls id={`showreelVideo-${id}`}>
+        <video controls preload="none" id={`showreelVideo-${id}`}>
             <source src={video} />
         </video>
     </div>
@@ -107,6 +105,7 @@ import closeIcon from '../assets/icons/x.svg'
     const showreelOpenButton = document.getElementById("showreelOpenButton-" + id);
     const showreelCloseButton = document.getElementById("showreelCloseButton-" + id);
     const showreelVideo = document.getElementById("showreelVideo-" + id);
+
 
     function openPopup()
     {
