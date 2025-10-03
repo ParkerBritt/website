@@ -11,55 +11,89 @@ height
 
 import { Image } from 'astro:assets';
 
-const images = import.meta.glob<{ default: ImageMetadata }>("/src/projects/*/*.{jpeg,jpg,png,gif}");
+const images = import.meta.glob<ImageMetadata>("/src/projects/*/*.{jpeg,jpg,png,gif}", { eager: true, import: "default" });
 
 const imageCount = imagePaths ? imagePaths.length : 1;
+
+const GAP_SIZE = 30;
+const ARTICLE_WIDTH = 830;
+
+// compute container height when multiple images used
+let multiImageHeight = 0;
+if(imagePaths)
+{
+    let imageCollectionTotalWidth = 0;
+    for(var i=0; i<imagePaths.length; i++)
+    {
+        const imagePath = imagePaths[i];
+        const image = images["/src/projects/"+imagePath];
+
+        const natW = image?.width;
+        const natH = image?.height;
+
+        const coef = 1/natH;
+
+        const scaledWidth = coef*natW;
+        imageCollectionTotalWidth += scaledWidth;
+    }
+    multiImageHeight = ARTICLE_WIDTH/imageCollectionTotalWidth;
+
+    // add gap
+    multiImageHeight -= (imagePaths.length-2)*GAP_SIZE/2;
+}
+
 ---
 
 <span
     data-side={side}
     data-fillWidth={fillWidth}
     data-multiImages={imageCount>1}
-    style={`--img-width: ${width}px; --img-scaling: ${width*0.1}%;`}
+    style={`--img-width: ${width}px; --img-scaling: ${width*0.1}%; --img-height: ${multiImageHeight}px;`}
+    class="image-container"
 >
     {imagePath && (
         <Image
-            src={images["/src/projects/"+imagePath]()} 
+            src={images["/src/projects/"+imagePath]} 
             alt={alt}
             width={width}
         />
     )}
-    {imagePaths && (
+    {imagePaths && 
     imagePaths.map((imagePath) =>
-        <Image
-            src={images["/src/projects/"+imagePath]()} 
-            alt={alt}
-            height={height}
-        />
+        {
+            return (
+                <Image
+                    src={images["/src/projects/"+imagePath]} 
+                    alt={alt}
+                    height={height}
+                />
+            )
+        }
     )
-    )}
+    }
 </span>
 
 <style>
-    span
+
+    .image-container
     {
         display: block;
         margin-top:15px;
-        gap: 30px;
+        gap: clamp(4px, 2vw, 30px);
         width: clamp(10px, var(--img-scaling, 50%), var(--img-width, auto));
     }
 
-    span[data-fillWidth="true"]
+    .image-container[data-fillWidth="true"]
     {
         width: 100%;
     }
-    span[data-side="left"]
+    .image-container[data-side="left"]
     {
         float: left;
         margin-right: 20px;
     }
 
-    span[data-side="right"]
+    .image-container[data-side="right"]
     {
         float: right;
         margin-left: 20px;
@@ -67,18 +101,21 @@ const imageCount = imagePaths ? imagePaths.length : 1;
 
     img
     {
-        border-radius: 20px;
+        border-radius: clamp(5px, 2vw, 20px);
         height: auto;
         object-fit: contain;
         width: 100%;
     }
 
-    span[data-multiImages="true"]
+    .image-container[data-multiImages="true"]
     {
-
+        display: flex;
+        justify-content: center;
+        height: clamp(10px, 34vw, var(--img-height, auto));
     }
-    span[data-multiImages="true"] img
+    .image-container[data-multiImages="true"] img
     {
+        height: 100%;
         width: auto;
     }
 </style>
