@@ -9,13 +9,15 @@ import closeIcon from '../assets/icons/x.svg'
 </button>
 
 <div id={`showreelPopup-${id}`} class="showreelPopup">
-    <div class="videoContainer">
-        <button id={`showreelCloseButton-${id}`} class="showreelCloseButton">
-            <img src={closeIcon.src}>
-        </button>
-        <video controls preload="none" id={`showreelVideo-${id}`}>
-            <source src={video} />
-        </video>
+    <div class="videoContainerOuter">
+        <div class="videoContainerInner">
+            <button id={`showreelCloseButton-${id}`} class="showreelCloseButton">
+                <img src={closeIcon.src}>
+            </button>
+            <video controls preload="none" id={`showreelVideo-${id}`}>
+                <source src={video} />
+            </video>
+        </div>
     </div>
 </div>
 
@@ -40,8 +42,16 @@ import closeIcon from '../assets/icons/x.svg'
 
     video
     {
-        width:100%;
+        /* width:100%; */
+        align-self: center;
         border-radius: 10px;
+
+        object-fit: contain;
+
+        height: 100%;
+
+        max-width: 100%;
+        max-height: 100%;
     }
 
     .showreelPopup.show
@@ -57,17 +67,37 @@ import closeIcon from '../assets/icons/x.svg'
         width: 24px;
     }
 
-    .videoContainer
+    .videoContainerOuter
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: none;
+
+        padding: 5%;
+
+        width: 90%;
+        height: 90%;
+        /* max-height: 50vh; */
+    }
+
+    .videoContainerInner
     {
         background: none;
         display: flex;
 
         flex-direction: column;
         align-items: flex-end;
-        gap: 10px;
+        gap: 4px;
 
-        width: 90%;
-        height: 90%;
+        max-width: 100%;
+        max-height:100%;
+
+        object-fit: contain;
+        width: fit-content;
+        height: fit-content;
+
     }
 
     .showreelOpenButton
