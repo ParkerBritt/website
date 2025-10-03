@@ -1,0 +1,124 @@
+---
+import Socials from '../../../components/Socials.astro';
+import { Image } from 'astro:assets';
+import profilePhoto from '../../../assets/images/profile-photo.jpg'
+---
+
+<div class="contents">
+    <div class="hero">
+        <div class="profilePhotoContainer">
+            <Image src={profilePhoto} alt="Parker Britt profile photo" height=1000 />
+        </div>
+        <div class="aboutMeLayout">
+            <h2>About Me</h1>
+            <p>
+                    I am a technical artist and programmer, recently having completed my Master's of science at Bournemouth University, specializing in procedural effects, software development, and DCC tool creation.
+                Beyond VFX, I have a strong interest in open-source software and Linux, regularly exploring technologies that contribute to both my professional and personal projects.
+            </p>
+        </div>
+    </div>
+<div>
+
+<style>
+    .contents
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        justify-content: center;
+        background: #121415;
+
+        box-shadow: 0px 0px 25px rgba(0,0,0,0.3);
+        min-height: 350px;
+    }
+
+    h2
+    {
+        padding-bottom: 30px;
+    }
+
+    .aboutMeLayout
+    {
+        width: 60%;
+    }
+
+    .socials
+    {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .hero
+    {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        text-align: justify;
+
+        padding-left: 10%;
+        padding-right: 10%;
+        /* padding-top: clamp(40px, 4% , 50px); */
+        /* padding-bottom: clamp(40px, 4% , 50px); */
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        max-width: 1800px;
+
+        /* height: 85%; */
+        /* width: 80%; */
+    }
+
+    @media (max-width: 1160px) {
+        .hero
+        {
+            flex-direction: column;
+            gap: 40px;
+        }
+        .aboutMeLayout
+        {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .hero
+        {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+
+    .profilePhotoContainer
+    {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        color: white;
+        border-radius: 40px;
+        /* background: red; */
+        /* width: min(95%, 400px); */
+        height: clamp(250px, 20vw, 400px);
+        /* height: 100%; */
+        aspect-ratio: 1 / 1;
+
+        overflow: hidden;
+    }
+
+    p
+    {
+        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        line-height: clamp(1.8rem, 2.2vw, 2.4rem);
+        color: white;
+    }
+    
+    .profilePhotoContainer img
+    {
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
