@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/global.css'
 import Navbar from '../../components/Navbar.astro';
 import SourceCodeButton from "../../components/SourceCodeButton.astro"
+import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
     const allprojects = await Astro.glob('../../projects/*{md,mdx}');
@@ -58,6 +59,7 @@ const { project } = Astro.props;
     <!--     <p>368</p> -->
     <!-- </div> -->
 </div>
+<Footer/>
 
 <style>
     .sideBar
@@ -76,7 +78,6 @@ const { project } = Astro.props;
         display: flex;
 
         justify-content: center;
-        background: #181c1e;
     }
 
     .header
@@ -119,6 +120,7 @@ const { project } = Astro.props;
     {
 		min-height: 100vh;
         width: 100%;
+        background: #181c1e;
     }
 
     .article 
