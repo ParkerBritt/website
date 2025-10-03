@@ -2,19 +2,35 @@
 import Socials from '../../../components/Socials.astro';
 import { Image } from 'astro:assets';
 import profilePhoto from '../../../assets/images/profile-photo.jpg'
+import CV from '../../../assets/pdfs/CV.pdf'
 ---
 
 <div class="contents">
     <div class="hero">
-        <div class="profilePhotoContainer">
-            <Image src={profilePhoto} alt="Parker Britt profile photo" height=1000 />
-        </div>
+        <a href="about">
+            <div class="profilePhotoContainer">
+                <Image src={profilePhoto} alt="Parker Britt profile photo" height=1000 />
+            </div>
+        </a>
         <div class="aboutMeLayout">
             <h2>About Me</h1>
             <p>
                     I am a technical artist and programmer, recently having completed my Master's of science at Bournemouth University, specializing in procedural effects, software development, and DCC tool creation.
                 Beyond VFX, I have a strong interest in open-source software and Linux, regularly exploring technologies that contribute to both my professional and personal projects.
             </p>
+            <div class="buttonsLayout">
+                <a href={CV} target="_blank">
+                    <button>
+                        CV
+                    </button>
+                </a>
+                <a href="/about">
+                    <button>
+                        Learn More
+                    </button>
+                </a>
+
+            </div>
         </div>
     </div>
 <div>
@@ -32,6 +48,34 @@ import profilePhoto from '../../../assets/images/profile-photo.jpg'
         box-shadow: 0px 0px 25px rgba(0,0,0,0.3);
         min-height: 350px;
     }
+
+    .buttonsLayout
+    {
+        display: flex;
+        gap: 15px;
+        padding-top: 15px;
+    }
+
+    button
+    {
+        background: none;
+        border: 2px solid white;
+        padding: 5px 15px 5px 15px;
+        border-radius: 10px;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+
+        box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+    }
+
+    button:hover
+    {
+        background: white;
+        color: black;
+    }
+
+
 
     h2
     {
@@ -89,6 +133,12 @@ import profilePhoto from '../../../assets/images/profile-photo.jpg'
             padding-left: 20px;
             padding-right: 20px;
         }
+
+        .buttonsLayout
+        {
+            justify-content: right;
+
+        }
     }
 
     .profilePhotoContainer
@@ -121,4 +171,15 @@ import profilePhoto from '../../../assets/images/profile-photo.jpg'
         height: 100%;
         object-fit: cover;
     }
+
+    .profilePhotoContainer
+    {
+        transition-duration: 200ms;
+    }
+
+    /* a:hover .profilePhotoContainer */
+    /* { */
+    /*     rotate: 1 1 0 -15deg; */
+    /*     box-shadow: -8px 8px 0px rgb(40,40,40); */
+    /* } */
 </style>
