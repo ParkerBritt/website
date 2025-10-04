@@ -1,7 +1,5 @@
 <h1 align="center">Portfolio Website</h1>
 <div align="center">
-
-<a href="https://astro.build/"><img src="https://cards.parkerbritt.com/badge?label=react&icon=react&color=61DAFB"></a>
 <a href="https://astro.build/"><img src="https://cards.parkerbritt.com/badge?label=astro&icon=nginx&color=BC52EE"></a>
 <a href="https://www.nginx.com/"><img src="https://cards.parkerbritt.com/badge?label=NGINX&icon=nginx&color=009639"></a>
 </div>
