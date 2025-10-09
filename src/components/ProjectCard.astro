@@ -5,7 +5,7 @@ const hrefLink = project.frontmatter.slug
   : project.frontmatter.link;
 console.log(hrefLink)
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 
 const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project-thumbnails/*.{jpeg,jpg,png,gif}");
 ---
@@ -17,9 +17,13 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
                 <h1>{project.frontmatter.title}</h1>
             </div>
             <div class="card-image-overlay"/>
-            <Image
+            <Picture
                 src={images['/src/assets/project-thumbnails/'+project.frontmatter.image]()} 
+                formats={["avif, webp"]}
                 onload="this.classList.add('loaded')"
+                layout='constrained'
+                width=1200
+                quality=70
                 alt=""
             />
         )}
