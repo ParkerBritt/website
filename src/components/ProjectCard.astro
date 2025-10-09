@@ -81,6 +81,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
         transform: scale(1);
     }
 
+    .project-card:hover
+    {
+        transform: scale(1.05);
+        z-index: 10;
+    }
+
     .card-image-overlay
     {
         position: absolute;
