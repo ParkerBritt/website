@@ -19,7 +19,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
             <div class="card-image-overlay"/>
             <Picture
                 src={images['/src/assets/project-thumbnails/'+project.frontmatter.image]()} 
-                formats={["avif, webp"]}
+                formats={["avif", "webp"]}
                 onload="this.classList.add('loaded')"
                 layout='constrained'
                 width=1200
