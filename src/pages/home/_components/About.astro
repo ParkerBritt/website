@@ -1,6 +1,6 @@
 ---
 import Socials from '../../../components/Socials.astro';
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import profilePhoto from '../../../assets/images/profile-photo.jpg'
 import CV from '../../../assets/pdfs/CV.pdf'
 ---
@@ -9,7 +9,7 @@ import CV from '../../../assets/pdfs/CV.pdf'
     <div class="hero">
         <a href="about">
             <div class="profilePhotoContainer">
-                <Image src={profilePhoto} alt="Parker Britt profile photo" height=1000 />
+                <Picture src={profilePhoto} alt="Parker Britt profile photo" height=1000 formats={['avif', 'webp']} />
             </div>
         </a>
         <div class="aboutMeLayout">
@@ -169,7 +169,14 @@ import CV from '../../../assets/pdfs/CV.pdf'
     .profilePhotoContainer img
     {
         height: 100%;
+        width: 100%;
         object-fit: cover;
+    }
+
+    .profilePhotoContainer picture
+    {
+        height: 100%;
+        width: 100%;
     }
 
     .profilePhotoContainer

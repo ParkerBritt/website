@@ -9,9 +9,14 @@ width,
 height
 } = Astro.props;
 
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 
-const images = import.meta.glob<ImageMetadata>("/src/projects/*/*.{jpeg,jpg,png,gif}", { eager: true, import: "default" });
+const images = import.meta.glob<ImageMetadata>(
+    [
+        "/src/projects/*/*.{jpeg,jpg,png,gif}",
+    ], 
+    { eager: true, import: "default" }
+);
 
 const imageCount = imagePaths ? imagePaths.length : 1;
 
@@ -52,20 +57,22 @@ if(imagePaths)
     class="image-container"
 >
     {imagePath && (
-        <Image
+        <Picture
             src={images["/src/projects/"+imagePath]} 
             alt={alt}
             width={width}
+            formats={['avif', 'webp']}
         />
     )}
     {imagePaths && 
     imagePaths.map((imagePath) =>
         {
             return (
-                <Image
+                <Picture
                     src={images["/src/projects/"+imagePath]} 
                     alt={alt}
                     height={height}
+                    formats={['avif', 'webp']}
                 />
             )
         }
