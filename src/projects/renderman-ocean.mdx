@@ -7,18 +7,24 @@ image: "renderman-ocean.png"
 description: "A declarative scene and procedural ocean built with python and OSL for direct use with the Renderman engine."
 ---
 
-import ArticleFigure from '../components/ArticleFigure.astro'
+import renderAv1 from "./renderman-ocean/render-av1.webm";
+import renderH265 from "./renderman-ocean/render-h265.mp4";
 
-<ArticleFigure
-    imagePath="renderman-ocean/renderman-ocean.png"
-    side="right"
-    width="1000"
-    alt="Thumbnail"
-    fillWidth="true"
-/>
+<video controls>
+    <source src={renderAv1} type="video/webm" />
+    <source src={renderH265} type="video/mp4" />
+</video>
 
 ## Introduction
 
 This project was an excersize in understanding RenderMan's Interface Bytstream Protocol (RIB) along with Open Shading Language (OSL).
 For background RIB is a scene description format for Pixar's RenderMan render engine. While different in purpose, similarities can be seen between RIB and the newer Open USD format, which makes sense seeing as they're both developed by the same company.
 OSL is an open source shading language for PBR rendering engines targeting high end VFX.
+
+import turnaroundAv1 from "./renderman-ocean/ocean-turnaround-av1.webm";
+import turnaroundH265 from "./renderman-ocean/ocean-turnaround-h265.mp4";
+
+<video controls>
+    <source src={turnaroundAv1} type="video/webm" />
+    <source src={turnaroundH265} type="video/mp4" />
+</video>
