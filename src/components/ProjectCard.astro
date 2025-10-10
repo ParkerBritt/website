@@ -75,17 +75,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
         transform: scale(0.9);
     }
 
-    .project-card:hover .image-titles
-    {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .project-card:hover
-    {
-        transform: scale(1.05);
-        z-index: 2;
-    }
 
     .card-image-overlay
     {
@@ -102,11 +91,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
         background-color: rgba(0,0,0,0.05);
         z-index: 1;
         transition: opacity 0.5s ease;
-    }
-
-    .project-card:hover .card-image-overlay
-    {
-        opacity: 100;
     }
 
     img
@@ -129,12 +113,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
     {
         opacity: 1;
         transform: scale(1);
-    }
-
-    .project-card:hover img
-    {
-        transform: scale(1.05);
-        transition: transform 1s ease-in-out;
     }
 
     a {
@@ -176,18 +154,38 @@ const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/project
             justify-content: left;
             text-align: left;
         }
-
-        .project-card:hover .card-image-overlay
-        {
-            opacity: 0;
-        }
-
     }
 
 
     .project-card h1
     {
         font-size: 1.8rem;
+    }
+
+
+    @media (pointer: fine) {
+        .project-card:hover .card-image-overlay
+        {
+            opacity: 100;
+        }
+
+        .project-card:hover img
+        {
+            transform: scale(1.05);
+            transition: transform 1s ease-in-out;
+        }
+
+        .project-card:hover
+        {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .project-card:hover .image-titles
+        {
+            opacity: 1;
+            transform: scale(1);
+        }
     }
 
 </style>
