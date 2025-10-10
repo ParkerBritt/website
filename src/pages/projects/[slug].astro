@@ -40,10 +40,12 @@ const headings = await project.getHeadings();
         <Layout title={project.frontmatter.title}>
             <div class="header">
                 <div class="titles">
-                    <h1>{project.frontmatter.title}</h1>
-                    <h2>{project.frontmatter.description}</h2>
+                    <div class="top-title-container">
+                        <h1>{project.frontmatter.title}</h1>
+                        {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
+                    </div>
+                    <h2 class="subtitle">{project.frontmatter.description}</h2>
                 </div>
-                {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
             </div>
 
             <div class="project-markdown">
@@ -112,6 +114,14 @@ const headings = await project.getHeadings();
             display: none;
         }
 
+    }
+
+    .top-title-container
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 5px;
     }
 
     .articleContainer
