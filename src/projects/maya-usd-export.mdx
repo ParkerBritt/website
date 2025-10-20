@@ -1,0 +1,29 @@
+---
+title: Maya USD Exporter
+link: https://github.com/ParkerBritt/maya-usd-export
+date: "May 19, 2025"
+image: "maya-usd-export.png"
+slug: "maya-usd-export"
+description: A custom standalone Maya plugin for exporting usd files.
+---
+
+## Introduction
+This project is an extensible, standalone C++ USD exporter plugin for maya. Currently the tool is capable of exporting desired groups and meshes as USD scenes, including skinned animations, keyframed transforms, and UVs.
+It works by reading in scene geometry using the Autodesk Maya SDK and building an identical USD scene with the USD API.
+
+## Motivation
+Initially this project served as a basically a python wrapper around the existing maya-usd plugin. This was to simplify the export process within a pipeline for animators or modellers, avoiding inconsistent exports.
+
+About a year later when planning new features I ran into the frustrating constraints of the maya-usd exporter.
+
+I wanted to add options to reverse winding orders, returning a scene object for users to modify before writing to disk, filters for properties, and more. When looking at the maya-usd source code I found it monolithic and inextensible. Making even small changes would be challenging and couldn't be easily integrated into a standalone plugin.
+
+That's why I created this project, to serve as an extensible library for developers to use when building their own exporters.
+
+I've also built a GUI using the library as an example and testing tool.
+
+## Future Work
+There's lot's I'd like to add to this project in the future but with so many other things to do I'm not sure when I'll get around to it.
+
+### Planned Features
+Custom property exports, Reverse winding order, property filters, better library packaging, better interface
