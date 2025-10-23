@@ -1,0 +1,15 @@
+---
+title: Houdini Attribute Connectivity
+link: https://github.com/ParkerBritt/houdini-attribute-connectivity
+date: "2025-01-31"
+slug: "houdini-attribute-connectivity"
+description: Houdini library for the Attribute Connectivity SOP.
+image: houdini-attribute-connectivity.png
+---
+
+# Overview
+Attribute Connectivity is a Houdini surface operator for indexing attributes by connectivity.
+
+The Attribute Connectivity sop provides connected component labeling for Houdini attributes using flood fill analysis. In other words it provides an index based on attribute values. It achieves this by separating foreground and background components based on the threshold parameter, then assigning a unique index to each discontinuous island.
+
+This node was written in C++ using the HDK.
