@@ -11,6 +11,6 @@ Feel free to use take inspiration or use code for your own website, but please k
 
 <h1></h1>
 <div align="center">
-<a href="https://parkerbritt.com"><img src="https://cards.parkerbritt.com/badge?label=parkerbritt.com&color=1572B6"></a>
+self hosted at <a href="https://parkerbritt.com">parkerbritt.com</a>
 <br><br>
 <a href="https://parkerbritt.com" target="_blank"><img src=screenshots/home_page.png></a>
