@@ -34,71 +34,170 @@ const headings = await project.getHeadings();
     />
 </head>
 
-<Navbar page=project.slug />
-<div class="articleContainer">
-    <div class="article">
-        <Layout title={project.frontmatter.title}>
-            <div class="header">
-                <div class="titles">
-                    <div class="top-title-container">
-                        <h1>{project.frontmatter.title}</h1>
-                        {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
-                    </div>
-                    <h2 class="subtitle">{project.frontmatter.description}</h2>
-                </div>
-            </div>
-
-            <div class="project-markdown">
-                <project.Content />
-            </div>
-        </Layout>
-    </div>
-    <div class="sideBar">
-        <div class="box">
-            <h3> Description </h3>
-            <p>{project.frontmatter.description}</p>
-        </div>
+<div class="sideBar">
+    <div class="sideBarContents">
         <!-- <div class="box"> -->
-        <!-- <h3> Toolsets </h3> -->
-        <!-- <p>Python, Maya, PyMel</p> -->
+        <!--     <h2 style="font-size: 1.4rem; margin: 0px;"><strong> {project.frontmatter.title} </strong></h2> -->
         <!-- </div> -->
-        <div class="box">
+        <!-- <div class="splitter"></div> -->
+        <h3> Description </h3>
+        <p>{project.frontmatter.description}</p>
+        <!-- <div class="splitter"></div> -->
+        <!-- <h3> Languages </h3> -->
+        <!-- <div class="toolsUsedContainer"> -->
+        <!--     <p>Python</p> -->
+        <!--     <p>Mel</p> -->
+        <!--     <p>Maya</p> -->
+        <!-- </div> -->
+        <!-- <p>Python<br>Maya<br>PyMel</p> -->
+        <div class="splitter"></div>
+        <div class="toc">
             <h3> Table of Contents </h3>
-            {headings
-                .filter(h => h.depth <= 3)
-                .map(h => (
-            <a href={`#${h.slug}`}><p>{h.text}</p></a>
-                ))
+            {
+                (() => {
+                        const items = [];
+                        let top_level_counter = 1;
+
+                        for (let i = 0; i < headings.length; i++) {
+                            const h = headings[i];
+
+                            items.push(
+                                <a key={h.slug} href={`#${h.slug}`}>
+                                    <p class=`depth-${h.depth}`>
+                                        {h.text}
+                                    </p>
+                                </a>
+                            );
+
+                            top_level_counter++;
+                        }
+
+                        return items;
+                    })()
             }
         </div>
         <!-- <h3> Lines of Code </h3> -->
         <!-- <p>368</p> -->
     </div>
 </div>
+<div class="page">
+    <Navbar page=project.slug />
+    <div class="articleContainer">
+        <div class="article">
+            <Layout title={project.frontmatter.title}>
+                <div class="header">
+                    <div class="titles">
+                        <div class="top-title-container">
+                            <h1>{project.frontmatter.title}</h1>
+                            {project.frontmatter.link && <SourceCodeButton src={project.frontmatter.link} />}
+                        </div>
+                        <h2 class="subtitle">{project.frontmatter.description}</h2>
+                    </div>
+                </div>
+
+                <div class="project-markdown">
+                    <project.Content />
+                </div>
+            </Layout>
+        </div>
+    </div>
+</div>
 <Footer/>
 
 <style>
+    :root {
+        --sidebar-width: 300px;
+    }
     .sideBar
     {
-        position: sticky;
-        top: 70px;
+        display: flex;
+
+        position: fixed;
+        left: 0px;
+        top: 0px;
         display: flex;
         flex-direction: column;
 
         justify-content: flex-start;
 
-        width: 300px;
-        height: fit-content;
+        width: var(--sidebar-width);
+        height: 100%;
         background: none;
+
+        background: #1c2124;
+        /* padding: 5px; */
+        /* border-radius: 10px; */
+        /* border: 1px solid #46474b; */
+        border-right: 1px solid rgb(50,50,50);
+        /* margin: 5px; */
+        overflow: scroll;
     }
 
-    .sideBar .box
+    .splitter
     {
-        background: #1c2124;
-        padding: 5px;
-        border-radius: 10px;
-        border: 1px solid #46474b;
-        margin: 5px;
+        background: rgb(50,50,50);
+        width: 100%;
+        height: 1px;
+        border-radius: 2px;
+
+        margin-top: 25px;
+        margin-bottom: 25px;
+
+    }
+
+    .sideBar h3
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+    }
+
+    .sideBar .sideBarContents
+    {
+        /* background: #1c2124; */
+        padding: 20px;
+        /* border-radius: 10px; */
+        /* border: 1px solid #46474b; */
+        /* margin: 5px; */
+        /* overflow: scroll; */
+    }
+
+    .sideBar p
+    {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: rgb(230,230,230);
+    }
+
+    .toc p.depth-2
+    {
+        margin-left: 30px;
+        color: rgb(160,160,160);
+        /* opacity: 50%; */
+    }
+
+    /* .depth-2::before */
+    /* { */
+    /*     content: ""; */
+    /*     position: absolute; */
+    /*     background: rgb(100,100,100); */
+    /*     opacity: 100%; */
+    /*     width: 3px; */
+    /*     height: 23pt; */
+    /*     border-radius: 3px; */
+    /*     transform: translate(-15px, -4px); */
+    /**/
+    /* } */
+
+    .toc p
+    {
+        transition-duration: 100ms;
+    }
+
+    .toc p:hover
+    {
+        color: white;
+        transform: translateX(5px);
     }
 
     .sideBar a
@@ -186,6 +285,11 @@ const headings = await project.getHeadings();
         background: #181c1e;
 		min-height: 90vh;
         width: clamp(100px, 100%, 830px);
+    }
+
+    .page
+    {
+        padding-left: calc(var(--sidebar-width) + 1px)
     }
 </style>
 

@@ -15,7 +15,7 @@ import ArticleFigure from '../components/ArticleFigure.astro'
     <source src={demoVideo} />
 </video>
 
-## Introduction
+# Introduction
 
 <ArticleFigure
     imagePath="maya-building-generator/fig_01.png"
@@ -37,7 +37,7 @@ width of each face, placing windows as you go. The
 trouble starts with finding the exact coordinates to place each
 window. To do this, I'll implement a sampling function that uses bilinear interpolation to get the right positions along each side of the building.
 
-## Sampling Function
+# Sampling Function
 Let's start by defining the inputs and outputs of this function.  
 As input this function must take parametric coordinates of a given quadrilateral face,  
 ```
@@ -84,7 +84,7 @@ for(i in range(NumColumns)):
     alt="Figure showing tangents and normals on geometry."
 />
 
-### Bilinear Interpolation
+## Bilinear Interpolation
 
 Because our starting walls are simple linear quadrilaterals, I can use bilinear interpolation as the heart of the sampling function.
 
@@ -99,7 +99,7 @@ Bilinear interpolation provides the perfect solution for this problem, but with 
 Bilinear interpolation only works if the points are consistently ordered when passed to the function.
 If the order is reversed so is the output leading to doors on the roof and diagonal lines of windows running across the walls.
 
-### Tangent Alignment Sorting
+## Tangent Alignment Sorting
 I came up with several approaches to consistently order the face vertices, each one failing in some aspect until I ultimately
 designed what I'll call the **Tangent Alignment Approach**. This method works by comparing the position of each vertex to the center.
 
@@ -141,7 +141,7 @@ $(1,-1)$ second, and so on.
 
 With this the sampling function is complete and can be used to create the rest of the project.
 
-## Kit Distribution
+# Kit Distribution
 <ArticleFigure
     imagePath="maya-building-generator/fig_05.png"
     side="right"
@@ -153,7 +153,7 @@ As stated previously the tool uses user built models and places them on each wal
 It starts by splitting the input primitive into conceptual pieces.
 The walls and roofs are identified based on the cross product between their face normal and $Y$ then processed based on their independent logic.
 
-### Walls
+## Walls
 Walls start by gathering important data such as normals, tangents, and bounds as well as sorting the corner vertices.
 It then executes logic to populate each component of the building: windows, trims, doors, etc.
 
@@ -172,7 +172,7 @@ The primitive is also being modified, the tool extrudes the roof, booleans gaps 
 
 Each component has its own logic, but they share a similar structure.
 
-## Reference
+# Reference
 
 The style of architecture was directly inspired by Barcelona, Spain.
 I gathered reference, finding what made these buildings similar and different, noticing styles of trims, usage of balconies on windows, and bricks on each corner.
@@ -234,7 +234,7 @@ export const colorPalleteSize = 35;
     alt="Reference images of Spanish architecture."
 />
 
-## Shaders
+# Shaders
 I built several shaders, reading attributes set by the code to define properties such as color.
 Each building receives semi-random attribute values, making each building visually distinct in color and geometry.
 The project is made up of more than 13 shaders for the various models, such as the one pictured below.
@@ -246,7 +246,7 @@ The project is made up of more than 13 shaders for the various models, such as t
     alt="Figure showing a shader used to construct the building."
 />
 
-## Optimization
+# Optimization
 
 <ArticleFigure
     imagePath="maya-building-generator/fig_loading.png"
@@ -267,7 +267,7 @@ While software like Houdini can easily handle millions of instanced models, Maya
 Based on observation Maya seems to exponentially degrade in performance the more objects are in a scene.
 I found that by merging meshes together Maya could handle the same amount of polygons with much better performance.
 
-## Self Reflection & Future Work
+# Self Reflection & Future Work
 
 <ArticleFigure
     imagePath="maya-building-generator/fig_debug.png"
