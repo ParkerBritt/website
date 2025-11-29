@@ -44,15 +44,23 @@ const headings = await project.getHeadings();
         <p>{project.frontmatter.description}</p>
         <!-- <div class="splitter"></div> -->
         <!-- <h3> Languages </h3> -->
-        <!-- <div class="toolsUsedContainer"> -->
-        <!--     <p>Python</p> -->
-        <!--     <p>Mel</p> -->
-        <!--     <p>Maya</p> -->
-        <!-- </div> -->
+        <div class="toolsUsedContainer">
+            {
+                project.frontmatter.tools && 
+                project.frontmatter.tools.map(toolName => 
+                (
+                    <p>{toolName}</p>
+                )
+                )
+            }
+        </div>
         <!-- <p>Python<br>Maya<br>PyMel</p> -->
         <div class="splitter"></div>
         <div class="toc">
-            <h3> Table of Contents </h3>
+            {
+                headings.length>0 &&
+                <h3> Table of Contents </h3>
+            }
             {
                 (() => {
                         const items = [];
@@ -60,6 +68,8 @@ const headings = await project.getHeadings();
 
                         for (let i = 0; i < headings.length; i++) {
                             const h = headings[i];
+
+                            <!-- if(h.depth >= 3) continue; -->
 
                             items.push(
                                 <a key={h.slug} href={`#${h.slug}`}>
@@ -108,6 +118,7 @@ const headings = await project.getHeadings();
     :root {
         --sidebar-width: 300px;
     }
+
     .sideBar
     {
         display: flex;
@@ -173,7 +184,22 @@ const headings = await project.getHeadings();
     {
         margin-left: 30px;
         color: rgb(160,160,160);
+    }
+    .toc p.depth-3
+    {
+        margin-left: 60px;
+        color: rgb(160,160,160);
         /* opacity: 50%; */
+    }
+
+    .toolsUsedContainer
+    {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .toolsUsedContainer p
+    {
+        margin: 5px;
     }
 
     /* .depth-2::before */
