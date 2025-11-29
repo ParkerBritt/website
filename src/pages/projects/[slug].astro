@@ -232,15 +232,6 @@ const headings = await project.getHeadings();
         text-decoration: none;
     }
 
-    @media only screen and (max-width: 1000px)
-    {
-        .sideBar
-        {
-            display: none;
-        }
-
-    }
-
     .titles
     {
         width: 100%;
@@ -316,6 +307,19 @@ const headings = await project.getHeadings();
     .page
     {
         padding-left: calc(var(--sidebar-width) + 1px)
+    }
+
+    @media only screen and (max-width: 1175px)
+    {
+        .sideBar
+        {
+            display: none;
+        }
+
+        .page
+        {
+            padding-left: 0;
+        }
     }
 </style>
 
