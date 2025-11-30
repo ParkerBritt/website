@@ -40,21 +40,21 @@ const headings = await project.getHeadings();
         <!--     <h2 style="font-size: 1.4rem; margin: 0px;"><strong> {project.frontmatter.title} </strong></h2> -->
         <!-- </div> -->
         <!-- <div class="splitter"></div> -->
-        <h3> Description </h3>
+        <div>
+            <h3> Description </h3>
+        </div>
         <p>{project.frontmatter.description}</p>
         <!-- <div class="splitter"></div> -->
-        <!-- <h3> Languages </h3> -->
         <div class="toolsUsedContainer">
             {
                 project.frontmatter.tools && 
                 project.frontmatter.tools.map(toolName => 
                 (
-                    <p>{toolName}</p>
+                <p style="color: rgb(130,130,130);" >{toolName}</p>
                 )
                 )
             }
         </div>
-        <!-- <p>Python<br>Maya<br>PyMel</p> -->
         <div class="splitter"></div>
         <div class="toc">
             {
@@ -351,15 +351,15 @@ const headings = await project.getHeadings();
 
     .project-markdown h1 {
         color: white;
-        font-size: 28px;
+        font-size: 1.4rem;
     }
 
     .project-markdown h2 {
         /* border-bottom: 3px solid rgba(255,255,255,0.1); */
         color: white;
-        font-size: 24px;
+        font-size: 1.2rem;
 
-        margin-top: 30px;
+        /* margin-top: 30px; */
     }
 
     .project-markdown h3 {
