@@ -9,28 +9,51 @@ tools: ["Houdini", "Vex", "KineFX"]
 
 import renderAv1 from "./etc-flower/flower-render_av1.webm";
 import renderH265 from "./etc-flower/flower-render_h265.mp4";
+import ArticleFigure from '../components/ArticleFigure.astro'
 
 <video controls>
     <source src={renderAv1} type="video/webm" />
     <source src={renderH265} type="video/mp4" />
 </video>
 
+<br/><br/>
+<br/><br/>
 # Introduction
 This project was created as a university workshop for Electric Theatre Collective, earning me a summer internship as a Houdini TD.
 
-The model was provided in the open position, the goal was to build a closed position and transition between the two. I did this using a combination of KineFX, Vex, and Vellum.
+The model was provided in the open position, the goal was to animate it opening from a closed position, matching a given reference. I did this using a combination of KineFX, Vex, and Vellum.
 The texturing was done in photoshop to match the reference and compositing in Nuke, adding the background element and grade.
 
-# Open Close
+<ArticleFigure
+    imagePath="etc-flower/houdini_screenshot_03.png"
+    side="none"
+    fillWidth="true"
+    alt="Screenshot of Houdini."
+/>
+
+# Rig
 I started by building a procedural rig. I achieve this by laying the model flat along its UVs, iterating through each leaf and matching a curve along each length. After which the flattened curve is reversed back into the original position where it can be skinned.
 
-    The rig is manipulated by rotating the rigs transform matrices in vex. 
+The rig is manipulated by rotating the rigs transform matrices in vex. 
+<ArticleFigure
+    imagePath="etc-flower/houdini_screenshot_01.png"
+    side="none"
+    fillWidth="true"
+    alt="Screenshot of Houdini."
+/>
 
 ## Closed Position
     To create the closed position I curved the KineFX rig inwards creating a colliding mesh, then used that as the target position for a Vellumn solver. The solver followed the rig while creating folds and collisions.
 
 ## Open Position
+<ArticleFigure
+    imagePath="etc-flower/houdini_screenshot_02.png"
+    side="none"
+    fillWidth="true"
+    alt="Screenshot of Houdini."
+/>
     The opening animation was created the same way. The rig starts from the closed position, transitioning into the open. Each height of petals starts opening after the previous layer starts. Secondary motion is added and the simulation is then driven by that motion. Benefiting from the art direction of Vex with the physics of a solver.
+
 
 # Texturing
 The texturing was created in photoshop as that's the program I was most familiar with at the time of creating this project. I started using several PBR flower textures, manipulating their form to fit each uv. I then layered additional textures to create the dotted purple effect that was present in the reference.
@@ -38,5 +61,9 @@ The amount of high res smart layers caused Photoshop to crash many times and tau
 
 I then moved the textures to Houdini where I built MaterialX shaders, tweaking the, color, normals, and SSS to get the soft, textured appearance I was going for.
 
-
-
+<ArticleFigure
+    imagePath="etc-flower/texture_screenshot_01.png"
+    side="none"
+    fillWidth="true"
+    alt="Screenshot of Gimp pretending to be Photoshop because I can't run Photoshop anymore but need a visual aid."
+/>
