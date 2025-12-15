@@ -12,6 +12,21 @@ import demoVideo from "./houdini-environment-builder/environment-demo.webm";
 
 import ArticleFigure from '../components/ArticleFigure.astro'
 
+# Introduction
+This project was created during my master's degree. What started as a simple garden building evolved 
+into a complex environment builder with over 4000 lines of code. 
+
+The goal was to allow anyone to create Houdini environments easily and non-destructively.
+To achieve this I built Qt parameter interfaces,
+complex python viewerstates, an asset registration system, and persistant management.
+The project served as a playground and proof of concept that I'd some day like to continue build off.
+
+
+<video controls>
+    <source src={demoVideo} />
+</video>
+
+# Demo Scene
 <ArticleFigure
     imagePath="houdini-environment-builder/demo-render.jpg"
     side="right"
@@ -19,11 +34,53 @@ import ArticleFigure from '../components/ArticleFigure.astro'
     alt="Thumbnail"
     fillWidth="true"
 />
+To test the project I create an example scene, inspired by my trips to the Japanese Tea Garden in San Francisco.
+I added several procedural plant templates built into the tool, exposing only a couple 
+parameters as proof of concept, although it would be easy to add more templates and parameters in the future. 
+Each template can be used as many times as you wanted to register different variants of the template.
 
-# Introduction
+# Design
+The project is made of three parts: the HDA, viewerstate, and parameter interface.
+The HDA holds the state and core logic, the parameter interface provides a Qt interface to manipulate the HDA, and the viewerstate provides viewport manipulation of the HDA.
 
-This project was created during my postgraduate degree. While the original goal was to create a simple garden builder, I wanted to challenge myself and see how far I could take it. Specifically, I wanted to push what's possible with HDA interfaces, python viewerstates, and persistant states in HDAs.
+While the original concept was to create separate modular HDAs that the user could mix and match
+with native Houdini nodes, I was limited to one node by the project requirements. I'd like to
+revisit the project at some point, implementing it as individual nodes. However, the monololithic
+design did turn out to be a interesting challenge.
 
-<video controls>
-    <source src={demoVideo} />
-</video>
+## Parameter UI
+I started by designing the interface in Figma. I looked at the existing design of Houdini for inspiration,
+but focusing on the recent additions, such as the new node info panel which follow a slightly different design
+than older Houdini interfaces.
+
+The UI is split into four pages: Terrain, Plants, Stage, and Render. The Plants and Terrain page
+are the primary focus and where most of my time was spent.
+
+### Terrain Page
+The terrain page offers several parameters for setting up the basic heightfield,
+but most of the work went into the viewerstate controls.
+On the right side of the page are buttons allowing the user to select different interaction modes
+for the viewerstate such as drawing and manipulating terrain and water.
+
+Terrain manipulation through the viewport is persistant between restarts and can be
+non-destructively edited.
+
+### Plants Page
+
+## Viewerstate
+For the viewerstate controls I took heavy inspiration from the game Tiny Glade because of how
+it's managed to expertly simplify controls to complex procedural structures, allowing even young
+children to easily figure out how to build beautiful terrain and structures.
+
+This is what I wanted to bring to Houdini. It's already capable of creating anything you can imagine,
+but only for those who can solve the technical challenges to make it real. I wanted to create a tool
+that abstracted the complexities while retaining the control needed to make whatever environment
+you could imagine.
+
+The idea is to allow the user to define drawable sections of land. Once created the user can manipulate
+these sections by moving them horizontally and vertically or smoothing the transtion. It's a very
+simple idea, but provides to framework for users to create complex and varied terrain.
+
+# State
+# Packaging
+
